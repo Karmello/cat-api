@@ -1,7 +1,10 @@
 {
   "name": "cat-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "22.13.0"
+  },
   "scripts": {
     "build": "rimraf build && cross-env NODE_ENV=production webpack --config config/webpack.config",
     "heroku-prebuild": "yarn clone-shared",
