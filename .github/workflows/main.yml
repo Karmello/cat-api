@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['22.x']
+        node-version: [22.13.0]
 
     steps:
       - uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
           PAT: ${{ secrets.PAT }}
 
       - name: Install heroku client
-        run: yarn global add heroku
+        run: yarn global add heroku --ignore-engines
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -55,5 +55,5 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.14
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'cat-api-development'
-          heroku_email: 'nogakamil@gmail.com'
+          heroku_app_name: cat-api-development
+          heroku_email: nogakamil@gmail.com
