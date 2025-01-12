@@ -121,10 +121,6 @@ export default {
     code: AppMsgCode.QuestionUnfollowed,
     type: AppMsgType.Success,
   },
-  [AppMsgCode.QuestionNotReanswerable]: {
-    code: AppMsgCode.QuestionNotReanswerable,
-    type: AppMsgType.Warning,
-  },
 } as Record<
   AppMsgCode,
   {

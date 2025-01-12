@@ -87,7 +87,6 @@ const getQuestionMocks = (users: IUser[]) => {
           }
         }
       })(),
-      canBeReanswered: true,
     } as IQuestion
 
     questionMocks.push(question as IQuestion)

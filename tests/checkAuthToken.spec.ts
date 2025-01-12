@@ -57,16 +57,6 @@ describe('checkAuthToken middleware', () => {
           done()
         })
     })
-    it('should block UpdateAnswer', done => {
-      chai
-        .request(api)
-        .put(ApiUrlPath.UpdateAnswer)
-        .end((err, res) => {
-          expect(res.status).to.eql(403)
-          expect(res.body).to.eql({ msg: msgs.ILLEGAL_ACTION })
-          done()
-        })
-    })
     it('should block CreateFollow', done => {
       chai
         .request(api)
@@ -191,17 +181,6 @@ describe('checkAuthToken middleware', () => {
       chai
         .request(api)
         .post(ApiUrlPath.CreateAnswer)
-        .set(X_AUTH_TOKEN, token)
-        .end((err, res) => {
-          expect(res.status).to.eql(403)
-          expect(res.body).to.eql({ msg: msgs.ILLEGAL_ACTION })
-          done()
-        })
-    })
-    it('should block UpdateAnswer', done => {
-      chai
-        .request(api)
-        .put(ApiUrlPath.UpdateAnswer)
         .set(X_AUTH_TOKEN, token)
         .end((err, res) => {
           expect(res.status).to.eql(403)

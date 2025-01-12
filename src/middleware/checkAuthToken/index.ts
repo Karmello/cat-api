@@ -42,11 +42,6 @@ const routesConfig = [
     confirmed: true,
   },
   {
-    path: ApiUrlPath.UpdateAnswer,
-    auth: true,
-    confirmed: true,
-  },
-  {
     path: ApiUrlPath.CreateFollow,
     auth: true,
     confirmed: true,

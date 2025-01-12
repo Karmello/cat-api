@@ -30,7 +30,7 @@ import {
 } from './question/index'
 
 import { GetQuestions, GetRandomQuestions } from './questions/index'
-import { CreateAnswer, UpdateAnswer } from './answer/index'
+import { CreateAnswer } from './answer/index'
 import { CreateFollow, DeleteFollow } from './follow/index'
 import { CreateReport } from './report/index'
 import { GetCountries, GetInfo, GetStats } from './other/index'
@@ -68,7 +68,6 @@ const registerControllers = (app: Application) => {
 
   // answer
   CreateAnswer(app)
-  UpdateAnswer(app)
 
   // follow
   CreateFollow(app)
