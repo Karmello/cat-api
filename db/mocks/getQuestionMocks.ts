@@ -10,9 +10,9 @@ import {
   IUser,
   IQuestion,
   QuestionType,
-} from 'atw-shared/utils'
+} from 'cat-shared/utils'
 
-import { getRandNum, getRandNums } from 'atw-shared/helpers'
+import { getRandNum, getRandNums } from 'cat-shared/helpers'
 import { msInDay } from '../constants'
 import questionCategories from './questionCategoryMocks'
 

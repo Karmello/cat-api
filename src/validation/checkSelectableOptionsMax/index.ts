@@ -2,7 +2,7 @@ import {
   ValidationErrorCode,
   IQuestion,
   MAX_NUM_OF_QUESTION_OPTIONS,
-} from 'atw-shared/utils'
+} from 'cat-shared/utils'
 
 export default {
   type: 'checkSelectableOptionsMax',

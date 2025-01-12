@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express'
 import get from 'lodash/get'
 
-import { ApiUrlPath, SocketEvent } from 'atw-shared/utils/index'
+import { ApiUrlPath, SocketEvent } from 'cat-shared/utils/index'
 import { IUserDoc } from 'utils/index'
 import { UserModel } from 'models/index'
 import { sendBadResponse } from 'helpers/index'

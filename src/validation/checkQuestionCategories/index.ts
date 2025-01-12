@@ -1,4 +1,4 @@
-import { ValidationErrorCode, QUESTION_MAX_NUM_OF_CATEGORIES } from 'atw-shared/utils'
+import { ValidationErrorCode, QUESTION_MAX_NUM_OF_CATEGORIES } from 'cat-shared/utils'
 
 export default {
   type: 'checkQuestionCategories',

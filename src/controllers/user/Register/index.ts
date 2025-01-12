@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express'
 
-import { ApiUrlPath, X_AUTH_TOKEN, AccountStatus } from 'atw-shared/utils/index'
+import { ApiUrlPath, X_AUTH_TOKEN, AccountStatus } from 'cat-shared/utils/index'
 import { getFreshAuthToken, sendBadResponse } from 'helpers/index'
 import { UserModel } from 'models/index'
 

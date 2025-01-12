@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express'
 import get from 'lodash/get'
 
-import { ApiUrlPath } from 'atw-shared/utils/index'
+import { ApiUrlPath } from 'cat-shared/utils/index'
 import msgs from 'utils/msgs'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { UserModel } from 'models/index'

@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 import { faker } from '@faker-js/faker'
 
-import { getRandNum } from 'atw-shared/helpers'
-import { IUser, Sex } from 'atw-shared/utils'
+import { getRandNum } from 'cat-shared/helpers'
+import { IUser, Sex } from 'cat-shared/utils'
 
 import payment from './paymentMock'
 import countries from './countryMocks'

@@ -1,5 +1,5 @@
-import { ValidationErrorCode } from 'atw-shared/utils'
-import { hasCredentialAllCharsValid } from 'atw-shared/validation/index'
+import { ValidationErrorCode } from 'cat-shared/utils'
+import { hasCredentialAllCharsValid } from 'cat-shared/validation/index'
 
 export default (isPassword?: boolean) => ({
   type: 'checkCredentialChars',

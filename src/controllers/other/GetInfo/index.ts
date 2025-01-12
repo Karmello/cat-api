@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express'
 import { format } from 'date-fns'
 
-import { ApiUrlPath, DATE_TIME_FORMAT } from 'atw-shared/utils/index'
+import { ApiUrlPath, DATE_TIME_FORMAT } from 'cat-shared/utils/index'
 
 export default (app: Application) => {
   app.get(ApiUrlPath.GetInfo, (req: Request, res: Response) => {

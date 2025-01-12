@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 
-import { X_AUTH_TOKEN } from 'atw-shared/utils/index'
+import { X_AUTH_TOKEN } from 'cat-shared/utils/index'
 import msgs from 'utils/msgs'
 import { sendBadResponse } from 'helpers/index'
 

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { UserModel } from 'models/index'
 
-import { PASSWORD_MAX_LENGTH, ValidationErrorCode } from 'atw-shared/utils/index'
+import { PASSWORD_MAX_LENGTH, ValidationErrorCode } from 'cat-shared/utils/index'
 
 describe('user password validation', () => {
   it('should return required error when no value provided', () => {

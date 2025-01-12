@@ -8,7 +8,7 @@ import {
   IReport,
   ICountry,
   IQuestionCategory,
-} from 'atw-shared/utils'
+} from 'cat-shared/utils'
 
 const getCollections = (db: Db) => {
   const users = db.collection<IUser>('users')

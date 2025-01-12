@@ -1,9 +1,9 @@
-import { ValidationErrorCode } from 'atw-shared/utils'
+import { ValidationErrorCode } from 'cat-shared/utils'
 
 import {
   isDateLowerOrEqualMax,
   isDateGreaterOrEqualMin,
-} from 'atw-shared/validation/index'
+} from 'cat-shared/validation/index'
 
 export default (minDate: string, maxDate: string) => ({
   type: 'checkDateOfBirth',

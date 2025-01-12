@@ -1,4 +1,4 @@
-import { AppMsgCode, AppMsgType } from 'atw-shared/utils/index'
+import { AppMsgCode, AppMsgType } from 'cat-shared/utils/index'
 
 export default {
   [AppMsgCode.SomethingWentWrong]: {

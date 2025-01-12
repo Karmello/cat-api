@@ -1,4 +1,4 @@
-[![master](https://github.com/Karmello/ask-the-world-api/actions/workflows/main.yml/badge.svg)](https://github.com/Karmello/ask-the-world-api/actions/workflows/main.yml)
+[![master](https://github.com/Karmello/cat-api/actions/workflows/main.yml/badge.svg)](https://github.com/Karmello/cat-api/actions/workflows/main.yml)
 
 # CAT API
 

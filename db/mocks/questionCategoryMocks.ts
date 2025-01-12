@@ -1,4 +1,4 @@
-import { IQuestionCategory } from 'atw-shared/utils'
+import { IQuestionCategory } from 'cat-shared/utils'
 
 const questionCategoryMocks = [
   {

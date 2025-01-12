@@ -1,5 +1,5 @@
-import { ValidationErrorCode } from 'atw-shared/utils'
-import { isStringTooShort } from 'atw-shared/validation/index'
+import { ValidationErrorCode } from 'cat-shared/utils'
+import { isStringTooShort } from 'cat-shared/validation/index'
 
 export default (min: number) => ({
   type: 'checkMinLength',

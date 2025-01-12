@@ -1,4 +1,4 @@
-import { IQuestion } from 'atw-shared/utils'
+import { IQuestion } from 'cat-shared/utils'
 
 export default (selectedIndexes: number[], question: IQuestion): boolean => {
   const {

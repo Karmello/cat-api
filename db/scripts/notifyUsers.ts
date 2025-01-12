@@ -1,6 +1,6 @@
 import { Db } from 'mongodb'
 
-import { IUser, Lang } from 'atw-shared/utils'
+import { IUser, Lang } from 'cat-shared/utils'
 import { getCollections } from 'db/helpers'
 import { sendMail } from 'helpers/index'
 
@@ -30,9 +30,9 @@ const notifyUsers = async (db: Db) => {
         // to: 'nogakamil@gmail.com',
         subject: "Friendly reminder from the Numbers Don't Lie web application",
         text: `
-          Hello ${u.username.toUpperCase()} ! 
-          You are registered in our database, but you haven't made any contribution so far. 
-          Please, find some time and answer some of our existing surveys or create your own. 
+          Hello ${u.username.toUpperCase()} !
+          You are registered in our database, but you haven't made any contribution so far.
+          Please, find some time and answer some of our existing surveys or create your own.
           Thank you in advance :)`,
         btnText: 'Go to App',
         link: 'https://numsdontlie.com',

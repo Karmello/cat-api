@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express'
 import mongoose from 'mongoose'
 
-import { ACTIVITY_LIST_MAX_ITEMS, ApiUrlPath, IActivity } from 'atw-shared/utils/index'
+import { ACTIVITY_LIST_MAX_ITEMS, ApiUrlPath, IActivity } from 'cat-shared/utils/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { QuestionModel, AnswerModel, ReportModel } from 'models/index'
 import { sendBadResponse } from 'helpers/index'

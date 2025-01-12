@@ -1,4 +1,4 @@
-import { ValidationErrorCode, IQuestion } from 'atw-shared/utils'
+import { ValidationErrorCode, IQuestion } from 'cat-shared/utils'
 
 export default {
   type: 'checkSelectableOptionsExact',

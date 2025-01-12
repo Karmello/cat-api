@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express'
 
-import { ApiUrlPath } from 'atw-shared/utils/index'
+import { ApiUrlPath } from 'cat-shared/utils/index'
 import { QuestionModel, AnswerModel, FollowModel, ReportModel } from 'models/index'
 import msgs from 'utils/msgs'
 import { readAuthToken, checkAuthToken } from 'middleware/index'

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import mongoose from 'mongoose'
 
-import { Filter } from 'atw-shared/utils/index'
+import { Filter } from 'cat-shared/utils/index'
 
 const ObjectId = mongoose.Types.ObjectId
 

@@ -1,4 +1,4 @@
-import { ICountry } from 'atw-shared/utils'
+import { ICountry } from 'cat-shared/utils'
 
 const countryMocks = [
   {

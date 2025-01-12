@@ -1,5 +1,5 @@
-import { ValidationErrorCode } from 'atw-shared/utils'
-import { isDateFormatValid } from 'atw-shared/validation/index'
+import { ValidationErrorCode } from 'cat-shared/utils'
+import { isDateFormatValid } from 'cat-shared/validation/index'
 
 export default {
   type: 'checkDateFormat',

@@ -1,4 +1,4 @@
-import { Lang } from 'atw-shared/utils/index'
+import { Lang } from 'cat-shared/utils/index'
 
 const dict = {
   [Lang.EN]: {

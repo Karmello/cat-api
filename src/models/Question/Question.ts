@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-import { QUESTION_INPUT_MAX_LENGTH, QuestionType } from 'atw-shared/utils/index'
+import { QUESTION_INPUT_MAX_LENGTH, QuestionType } from 'cat-shared/utils/index'
 import { ModelName, IQuestionDoc } from 'utils/index'
 
 import {

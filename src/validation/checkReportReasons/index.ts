@@ -1,4 +1,4 @@
-import { ValidationErrorCode, ReportReason } from 'atw-shared/utils'
+import { ValidationErrorCode, ReportReason } from 'cat-shared/utils'
 
 export default {
   type: 'checkReportReasons',

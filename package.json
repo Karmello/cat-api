@@ -1,5 +1,5 @@
 {
-  "name": "ask-the-world-api",
+  "name": "cat-api",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit",
     "test": "cross-env NODE_ENV=test mocha -r ts-node/register -r tsconfig-paths/register src/**/*.spec.ts --timeout 10000 --exit",
     "test-int": "cross-env NODE_ENV=test mocha -r ts-node/register -r tsconfig-paths/register tests/index.ts --timeout 25000 --exit",
-    "clone-shared": "git clone https://$PAT@github.com/Karmello/ask-the-world-shared.git src/ext/ask-the-world-shared",
+    "clone-shared": "git clone https://$PAT@github.com/Karmello/cat-shared.git src/ext/cat-shared",
     "prepare": "husky install",
     "db": "ts-node -r tsconfig-paths/register ./db/run.ts"
   },

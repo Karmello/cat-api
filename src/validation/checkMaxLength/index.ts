@@ -1,5 +1,5 @@
-import { ValidationErrorCode } from 'atw-shared/utils'
-import { isStringTooLong } from 'atw-shared/validation/index'
+import { ValidationErrorCode } from 'cat-shared/utils'
+import { isStringTooLong } from 'cat-shared/validation/index'
 
 export default (max: number) => ({
   type: 'checkMaxLength',

@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express'
 
-import { ApiUrlPath, SocketEvent } from 'atw-shared/utils/index'
+import { ApiUrlPath, SocketEvent } from 'cat-shared/utils/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { UserModel } from 'models/index'
 import { getMailTemplate, sendBadResponse } from 'helpers/index'

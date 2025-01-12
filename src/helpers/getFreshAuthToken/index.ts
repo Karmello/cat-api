@@ -4,7 +4,7 @@ import {
   X_AUTH_TOKEN_EXPIRES_IN,
   X_AUTH_TOKEN_SHORT_EXPIRES_IN,
   IUser,
-} from 'atw-shared/utils/index'
+} from 'cat-shared/utils/index'
 
 export default (
   user: IUser,

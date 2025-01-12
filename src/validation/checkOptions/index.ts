@@ -1,9 +1,9 @@
-import { ValidationErrorCode } from 'atw-shared/utils'
+import { ValidationErrorCode } from 'cat-shared/utils'
 
 import {
   MIN_NUM_OF_QUESTION_OPTIONS,
   MAX_NUM_OF_QUESTION_OPTIONS,
-} from 'atw-shared/utils/index'
+} from 'cat-shared/utils/index'
 
 export default {
   type: 'checkOptions',

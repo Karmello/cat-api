@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import { ValidationErrorCode } from 'atw-shared/utils'
+import { ValidationErrorCode } from 'cat-shared/utils'
 import { UserModel } from 'models/index'
 
 describe('user username validation', () => {

@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express'
 
-import { ApiUrlPath } from 'atw-shared/utils/index'
+import { ApiUrlPath } from 'cat-shared/utils/index'
 import { QuestionCategoryModel } from 'models/index'
 import msgs from 'utils/msgs'
 import { sendBadResponse } from 'helpers/index'

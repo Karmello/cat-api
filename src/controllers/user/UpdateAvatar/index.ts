@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express'
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 
-import { ApiUrlPath } from 'atw-shared/utils/index'
+import { ApiUrlPath } from 'cat-shared/utils/index'
 import msgs from 'utils/msgs'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { base64ToBuffer, sendBadResponse } from 'helpers/index'

@@ -2,7 +2,7 @@ import { Application, Request, Response } from 'express'
 import mongoose from 'mongoose'
 import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3'
 
-import { ApiUrlPath, IQuestion, SocketEvent } from 'atw-shared/utils/index'
+import { ApiUrlPath, IQuestion, SocketEvent } from 'cat-shared/utils/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { getMailTemplate, sendBadResponse } from 'helpers/index'
 import dict from 'src/dictionary'

@@ -8,7 +8,7 @@ import {
   READ_QUESTIONS_MAX,
   READ_TOP_QUESTIONS_MAX,
   IRequestQuery,
-} from 'atw-shared/utils/index'
+} from 'cat-shared/utils/index'
 
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { QuestionModel } from 'models/index'

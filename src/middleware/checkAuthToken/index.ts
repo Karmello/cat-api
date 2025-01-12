@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { ApiUrlPath } from 'atw-shared/utils'
+import { ApiUrlPath } from 'cat-shared/utils'
 import msgs from 'utils/msgs'
 import { sendBadResponse } from 'helpers/index'
 

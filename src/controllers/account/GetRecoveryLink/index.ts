@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express'
 
-import { ApiUrlPath, X_AUTH_TOKEN, ValidationErrorCode } from 'atw-shared/utils/index'
+import { ApiUrlPath, X_AUTH_TOKEN, ValidationErrorCode } from 'cat-shared/utils/index'
 import { IUserDoc } from 'utils/index'
 import { sendMail, getFreshAuthToken, sendBadResponse } from 'helpers/index'
 import { UserModel } from 'models/index'

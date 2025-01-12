@@ -8,7 +8,7 @@ module.exports = function (api) {
       'module-resolver',
       {
         alias: {
-          '^atw-shared(.+)': './src/ext/ask-the-world-shared/source/\\1',
+          '^cat-shared(.+)': './src/ext/cat-shared/source/\\1',
           '^src(.+)': './src/\\1',
           '^(controllers|utils|models|db|validation|middleware|helpers)(.+)':
             './src/\\1/\\2',

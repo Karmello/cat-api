@@ -1,5 +1,5 @@
-import { ValidationErrorCode } from 'atw-shared/utils'
-import { Sex } from 'atw-shared/utils/index'
+import { ValidationErrorCode } from 'cat-shared/utils'
+import { Sex } from 'cat-shared/utils/index'
 
 export default {
   type: 'checkSex',

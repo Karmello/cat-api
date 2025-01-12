@@ -15,7 +15,7 @@
     "sourceMap": false,
     "skipLibCheck": true,
     "paths": {
-      "atw-shared/*": ["src/ext/ask-the-world-shared/source/*"],
+      "cat-shared/*": ["src/ext/cat-shared/source/*"],
       "controllers/*": ["src/controllers/*"],
       "utils/*": ["src/utils/*"],
       "models/*": ["src/models/*"],

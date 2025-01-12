@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import Honeybadger from '@honeybadger-io/js'
 
-import { AppMsg } from 'atw-shared/utils'
+import { AppMsg } from 'cat-shared/utils'
 import msgs from 'utils/msgs'
 
 type ResBody =

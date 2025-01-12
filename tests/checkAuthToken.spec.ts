@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-import { ApiUrlPath, IUser, X_AUTH_TOKEN } from 'atw-shared/utils'
+import { ApiUrlPath, IUser, X_AUTH_TOKEN } from 'cat-shared/utils'
 import { getFreshAuthToken } from '../src/helpers/index'
 import msgs from '../src/utils/msgs/index'
 import { api, chai, expect } from './'

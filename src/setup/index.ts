@@ -6,7 +6,7 @@ import helmet from 'helmet'
 import Honeybadger from '@honeybadger-io/js'
 import { v4 as uuidv4 } from 'uuid'
 
-import { X_AUTH_TOKEN } from 'atw-shared/utils/index'
+import { X_AUTH_TOKEN } from 'cat-shared/utils/index'
 
 const { NODE_ENV, HONEYBADGER_API_KEY } = process.env
 

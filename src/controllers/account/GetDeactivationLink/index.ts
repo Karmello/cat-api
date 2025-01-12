@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express'
 
-import { ApiUrlPath, X_AUTH_TOKEN } from 'atw-shared/utils/index'
+import { ApiUrlPath, X_AUTH_TOKEN } from 'cat-shared/utils/index'
 import { IUserDoc } from 'utils/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { sendMail, getFreshAuthToken, sendBadResponse } from 'helpers/index'
