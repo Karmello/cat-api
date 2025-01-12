@@ -22,7 +22,7 @@ const getMailTemplate = ({ lang, text, link, btnText }: Args) => {
     tags.push('<br />')
     tags.push(`
       <div>
-        <a 
+        <a
           href="${link}"
           target="new"
           style="
@@ -45,7 +45,7 @@ const getMailTemplate = ({ lang, text, link, btnText }: Args) => {
   tags.push(`
     <div style="text-align: center;">
       <img
-        src="https://atw-fe-assets.s3.eu-central-1.amazonaws.com/logo.png"
+        src="https://cat-fe-assets.s3.eu-central-1.amazonaws.com/logo.png"
         width="200"
       />
       <br /><br />
