@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preinstall": "yarn global add heroku",
     "build": "rimraf build && cross-env NODE_ENV=production webpack --config config/webpack.config",
     "heroku-prebuild": "yarn clone-shared",
     "start": "cross-env NODE_ENV=production node build/index.js",

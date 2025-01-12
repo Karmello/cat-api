@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.10.0]
+        node-version: [22.13.0]
 
     steps:
       - uses: actions/checkout@v3
@@ -24,6 +24,9 @@ jobs:
         run: yarn clone-shared
         env:
           PAT: ${{ secrets.PAT }}
+
+      - name: Install heroku client
+        run: yarn global add heroku
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
