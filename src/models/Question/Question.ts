@@ -26,9 +26,6 @@ const questionSchema = new Schema(
       required: true,
       default: Date.now,
     },
-    terminatedAt: {
-      type: Number,
-    },
     type: {
       type: String,
       required: true,

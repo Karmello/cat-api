@@ -39,7 +39,6 @@ describe('deactivateUser', () => {
           text: 'Who is going to be a new President of the United States of America ?',
           answers: ['Donald Trump', 'Joe Biden'],
           numOfVotes: { exact: 1 },
-          isTerminated: false,
         }),
         AnswerModel.collection.insertOne({
           questionId,

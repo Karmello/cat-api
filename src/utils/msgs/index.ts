@@ -121,14 +121,6 @@ export default {
     code: AppMsgCode.QuestionUnfollowed,
     type: AppMsgType.Success,
   },
-  [AppMsgCode.QuestionTerminated]: {
-    code: AppMsgCode.QuestionTerminated,
-    type: AppMsgType.Success,
-  },
-  [AppMsgCode.QuestionGotTerminated]: {
-    code: AppMsgCode.QuestionGotTerminated,
-    type: AppMsgType.Warning,
-  },
   [AppMsgCode.QuestionNotReanswerable]: {
     code: AppMsgCode.QuestionNotReanswerable,
     type: AppMsgType.Warning,

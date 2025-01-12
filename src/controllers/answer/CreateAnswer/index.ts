@@ -27,10 +27,6 @@ export default (app: Application) => {
             return sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG })
           }
 
-          if (question.terminatedAt) {
-            return sendBadResponse(req, res, 400, { msg: msgs.QUESTION_GOT_TERMINATED })
-          }
-
           const newAnswer = new AnswerModel({
             questionId: req.query.questionId,
             answererId: req.decoded._id,

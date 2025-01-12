@@ -22,7 +22,6 @@ export default (app: Application) => {
           {
             $match: {
               creatorId: new ObjectId(_id.toString()),
-              terminatedAt: { $exists: false },
             },
           },
           {
@@ -37,14 +36,12 @@ export default (app: Application) => {
           {
             $match: {
               creatorId: new ObjectId(_id.toString()),
-              terminatedAt: { $exists: true },
             },
           },
           {
             $project: {
               _id: '$_id',
               text: '$text',
-              terminatedAt: '$terminatedAt',
             },
           },
         ]),
@@ -94,8 +91,8 @@ export default (app: Application) => {
           ] as unknown as IActivity[]
           activities.sort((a, b) => {
             return (
-              (b.createdAt || b.answeredAt || b.terminatedAt || b.reportedAt) -
-              (a.createdAt || a.answeredAt || a.terminatedAt || a.reportedAt)
+              (b.createdAt || b.answeredAt || b.reportedAt) -
+              (a.createdAt || a.answeredAt || a.reportedAt)
             )
           })
           res.status(200).send({ data: activities.slice(0, ACTIVITY_LIST_MAX_ITEMS) })

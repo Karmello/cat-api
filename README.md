@@ -91,7 +91,6 @@ ROOT[<b>Question</b>] --> A1[<b>Create</b>] --> A2[POST /question/create]
 ROOT --> B1[<b>Delete</b>] --> B2[DELETE /question/delete]
 ROOT --> C1[<b>Get</b>] --> C2[GET /question]
 ROOT --> D1[<b>GetCategories</b>] --> D2[GET /question/categories]
-ROOT --> E1[<b>Terminate</b>] --> E2[PUT /question/terminate]
 ```
 
 ## Answer

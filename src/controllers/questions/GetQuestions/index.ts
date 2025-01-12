@@ -97,7 +97,6 @@ export default (app: Application) => {
           },
           {
             $match: {
-              terminatedAt: { $exists: false },
               votes: {
                 $not: {
                   $elemMatch: { answererId: new ObjectId(req.decoded?._id) },
@@ -131,7 +130,6 @@ export default (app: Application) => {
               _id: '$_id',
               creatorId: { $first: '$creatorId' },
               createdAt: { $first: '$createdAt' },
-              terminatedAt: { $first: '$terminatedAt' },
               categories: { $first: '$categories' },
               text: { $first: '$text' },
               options: { $first: '$options' },
@@ -183,16 +181,6 @@ export default (app: Application) => {
             $facet: {
               meta: [{ $count: 'count' }],
               docs: [{ $skip }, { $limit }],
-            },
-          },
-        ])
-      } else if (filter === Filter.Terminated) {
-        aggregate = QuestionModel.aggregate([
-          { $match: { terminatedAt: { $exists: true }, ...$match } },
-          {
-            $facet: {
-              meta: [{ $count: 'count' }],
-              docs: [{ $sort: { terminatedAt: -1 } }, { $skip }, { $limit }],
             },
           },
         ])

@@ -65,12 +65,6 @@ const routesConfig = [
     paid: true,
   },
   {
-    path: ApiUrlPath.TerminateQuestion,
-    auth: true,
-    confirmed: true,
-    paid: true,
-  },
-  {
     path: ApiUrlPath.DeleteQuestion,
     auth: true,
     confirmed: true,
