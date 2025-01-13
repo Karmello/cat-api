@@ -35,8 +35,8 @@ export default (app: Application) => {
       const $match = {} as Record<string, unknown>
 
       if (categories) {
-        $match.categories = {
-          $in: categories.split('_'),
+        $match.category = {
+          $in: categories.split('_').map(id => new ObjectId(id)),
         }
       }
 
