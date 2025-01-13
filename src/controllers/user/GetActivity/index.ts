@@ -32,19 +32,6 @@ export default (app: Application) => {
             },
           },
         ]),
-        QuestionModel.aggregate([
-          {
-            $match: {
-              creatorId: new ObjectId(_id.toString()),
-            },
-          },
-          {
-            $project: {
-              _id: '$_id',
-              text: '$text',
-            },
-          },
-        ]),
         AnswerModel.aggregate([
           { $match: { answererId: new ObjectId(_id.toString()) } },
           {
@@ -87,7 +74,6 @@ export default (app: Application) => {
             ...results[0],
             ...results[1],
             ...results[2],
-            ...results[3],
           ] as unknown as IActivity[]
           activities.sort((a, b) => {
             return (

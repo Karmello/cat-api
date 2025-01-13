@@ -9,6 +9,23 @@ import countries from './countryMocks'
 
 const password = '$2a$10$8kcJdl16EMupO2cmLFAsf.jVWkFaCV5W47Mip6BMfwUJjLM6/J0n2'
 
+const botUser = {
+  _id: new mongoose.Types.ObjectId('67854396c989437fe0b78954'),
+  email: 'nogakamil@gmail.com',
+  username: 'catbot',
+  password: '$2a$10$5bylcTCcQ0Y/NgvtoQ54NOq/hEO7PW6uItgm7CscjNCC9GwjUeN1e',
+  dateOfBirth: '2025-01-13',
+  country: 'PL',
+  sex: 'M',
+  config: {
+    confirmed: true,
+    registeredAt: 1736775536331,
+    payment: {
+      type: 'FREE',
+    },
+  },
+}
+
 const basicUsers = [
   {
     _id: new mongoose.Types.ObjectId('5eeb976152c1dc555c2d676c'),
@@ -180,6 +197,6 @@ const defaultUsers = (() => {
   return arr
 })()
 
-const userMocks = [...basicUsers, ...defaultUsers] as IUser[]
+const userMocks = [botUser, ...basicUsers, ...defaultUsers] as IUser[]
 
 export default userMocks

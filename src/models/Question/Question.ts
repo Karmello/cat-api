@@ -2,12 +2,7 @@ import mongoose from 'mongoose'
 
 import { QUESTION_INPUT_MAX_LENGTH, QuestionType } from 'cat-shared/utils/index'
 import { ModelName, IQuestionDoc } from 'utils/index'
-
-import {
-  checkMaxLength,
-  checkOptions,
-  checkQuestionCategories,
-} from 'validation/index'
+import { checkMaxLength, checkOptions } from 'validation/index'
 
 const { model, Schema } = mongoose
 
@@ -28,13 +23,11 @@ const questionSchema = new Schema(
       required: true,
       enum: QuestionType,
     },
-    categories: [
-      {
-        ref: ModelName.QuestionCategory,
-        type: String,
-        required: true,
-      },
-    ],
+    category: {
+      ref: ModelName.QuestionCategory,
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
     text: {
       type: String,
       required: true,
@@ -49,9 +42,9 @@ const questionSchema = new Schema(
     correctOptions: [
       {
         type: Number,
-        required: true
-      }
-    ]
+        required: true,
+      },
+    ],
   },
   {
     versionKey: false,
@@ -59,14 +52,6 @@ const questionSchema = new Schema(
 )
 
 questionSchema.index({ options: 'text', text: 'text' })
-
-questionSchema
-  .path('categories')
-  .validate(
-    checkQuestionCategories.validator,
-    checkQuestionCategories.message,
-    checkQuestionCategories.type
-  )
 
 questionSchema
   .path('options')

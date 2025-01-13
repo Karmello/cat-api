@@ -15,7 +15,7 @@ export default (app: Application) => {
     (req: Request, res: Response) => {
       const creatorId = req.decoded._id
       const question = req.body as IQuestion
-      const { type, categories, text, options, correctOptions } = question
+      const { type, category, text, options, correctOptions } = question
 
       if (!checkCorrectOptions(question)) {
         return sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG })
@@ -24,10 +24,10 @@ export default (app: Application) => {
       const newQuestion = new QuestionModel({
         creatorId,
         type,
-        categories,
+        category,
         text,
         options,
-        correctOptions
+        correctOptions,
       })
 
       newQuestion

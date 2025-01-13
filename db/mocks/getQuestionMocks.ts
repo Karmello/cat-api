@@ -5,7 +5,6 @@ import {
   MIN_NUM_OF_QUESTION_OPTIONS,
   MAX_NUM_OF_QUESTION_OPTIONS,
   QUESTION_INPUT_MAX_LENGTH,
-  QUESTION_MAX_NUM_OF_CATEGORIES,
   ANSWER_INPUT_MAX_LENGTH,
   IUser,
   IQuestion,
@@ -16,10 +15,7 @@ import { getRandNum, getRandNums } from 'cat-shared/helpers'
 import { msInDay } from '../constants'
 import questionCategories from './questionCategoryMocks'
 
-const QUESTION_TYPES = [
-  QuestionType.SingleChoice,
-  QuestionType.MultiChoice
-]
+const QUESTION_TYPES = [QuestionType.SingleChoice, QuestionType.MultiChoice]
 
 const getQuestionMocks = (users: IUser[]) => {
   const questionMocks = [] as IQuestion[]
@@ -29,13 +25,12 @@ const getQuestionMocks = (users: IUser[]) => {
 
     const type = QUESTION_TYPES[getRandNum(0, QUESTION_TYPES.length - 1)]
 
-    const categoriesIndexes = getRandNums(
-      0,
-      questionCategories.length - 1,
-      getRandNum(1, QUESTION_MAX_NUM_OF_CATEGORIES)
-    )
+    const categoryIndex = getRandNum(0, questionCategories.length - 1)
 
-    const numOfAnswers = getRandNum(MIN_NUM_OF_QUESTION_OPTIONS, MAX_NUM_OF_QUESTION_OPTIONS)
+    const numOfAnswers = getRandNum(
+      MIN_NUM_OF_QUESTION_OPTIONS,
+      MAX_NUM_OF_QUESTION_OPTIONS
+    )
 
     const question = {
       creatorId: user._id,
@@ -46,13 +41,7 @@ const getQuestionMocks = (users: IUser[]) => {
         })
       ).getTime(),
       type,
-      categories: (() => {
-        const arr = []
-        times(categoriesIndexes.length, i => {
-          arr.push(questionCategories[categoriesIndexes[i]]._id)
-        })
-        return arr
-      })(),
+      category: questionCategories[categoryIndex]._id.toString(),
       text: faker.lorem
         .sentence(30)
         .substring(0, getRandNum(15, QUESTION_INPUT_MAX_LENGTH / 3)),

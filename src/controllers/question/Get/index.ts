@@ -46,11 +46,14 @@ export default (app: Application) => {
               const requestorFollow = results[1]
 
               if (!requestorAnswer) {
+                const questionObj = question.toObject()
+                delete questionObj.correctOptions
+
                 return res.status(200).send({
                   count: 1,
                   data: [
                     {
-                      ...question.toObject(),
+                      ...questionObj,
                       isRequestorFollowing: Boolean(requestorFollow),
                     },
                   ],

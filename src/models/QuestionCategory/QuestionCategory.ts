@@ -6,10 +6,6 @@ const { model, Schema } = mongoose
 
 const questionCategorySchema = new Schema(
   {
-    _id: {
-      type: String,
-      required: true,
-    },
     name: {
       en: {
         type: String,
