@@ -3,6 +3,7 @@ import { MongoClient } from 'mongodb'
 import { SCRIPTS } from './constants'
 import {
   seedDatabase,
+  seedDbWithStaticData,
   emptyDatabase,
   checkData,
   notifyUsers,
@@ -24,6 +25,10 @@ const main = async () => {
     switch (scriptName) {
       case SCRIPTS.SEED:
         await seedDatabase(db)
+        break
+
+      case SCRIPTS.SEED_STATIC:
+        await seedDbWithStaticData(db)
         break
 
       case SCRIPTS.EMPTY:
