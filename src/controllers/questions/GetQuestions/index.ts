@@ -133,8 +133,6 @@ export default (app: Application) => {
               categories: { $first: '$categories' },
               text: { $first: '$text' },
               options: { $first: '$options' },
-              selectableOptions: { $first: '$selectableOptions' },
-              canBeReanswered: { $first: '$canBeReanswered' },
               requestorAnsweredAt: { $first: '$answers.answeredAt' },
             },
           },

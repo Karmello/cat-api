@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import times from 'lodash/times'
 
-import { IUser, IQuestion, IAnswer } from 'cat-shared/utils'
+import { IUser, IQuestion, IAnswer, QuestionType } from 'cat-shared/utils'
 import { getRandNum, getRandNums } from 'cat-shared/helpers'
 
 import { msInDay } from '../constants'
@@ -14,8 +14,8 @@ const getAnswerMocks = (users: IUser[], questions: IQuestion[]) => {
   times(questionIndexes.length, (i: number) => {
     const {
       _id,
+      type,
       options,
-      selectableOptions: { exact, range },
     } = questions[i]
 
     const userIndexes = getRandNums(0, users.length - 1, getRandNum(0, users.length - 1))
@@ -35,7 +35,7 @@ const getAnswerMocks = (users: IUser[], questions: IQuestion[]) => {
           const arr = getRandNums(
             0,
             options.length - 1,
-            range ? getRandNum(range.min, range.max) : exact
+            type === QuestionType.MultiChoice ? getRandNum(1, options.length) : 1
           )
           return arr
         })(),

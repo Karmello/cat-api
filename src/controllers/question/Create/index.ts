@@ -13,20 +13,8 @@ export default (app: Application) => {
     checkAuthToken,
     (req: Request, res: Response) => {
       const creatorId = req.decoded._id
-      const { type, categories, text, options, selectableOptions } =
+      const { type, categories, text, options } =
         req.body as IQuestion
-
-      if (!selectableOptions.exact && !selectableOptions.range) {
-        return sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG })
-      }
-
-      if (selectableOptions.exact !== undefined) {
-        delete req.body.selectableOptions.range
-      }
-
-      if (selectableOptions.range !== undefined) {
-        delete req.body.selectableOptions.exact
-      }
 
       const newQuestion = new QuestionModel({
         creatorId,
@@ -34,7 +22,6 @@ export default (app: Application) => {
         categories,
         text,
         options,
-        selectableOptions,
       })
 
       newQuestion

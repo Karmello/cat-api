@@ -1,10 +1,7 @@
 import { IQuestion } from 'cat-shared/utils'
 
 export default (selectedIndexes: number[], question: IQuestion): boolean => {
-  const {
-    options,
-    selectableOptions: { exact, range },
-  } = question
+  const { options } = question
 
   if (!selectedIndexes?.length) {
     return false
@@ -12,16 +9,6 @@ export default (selectedIndexes: number[], question: IQuestion): boolean => {
 
   if (new Set(selectedIndexes).size !== selectedIndexes.length) {
     return false
-  }
-
-  if (exact !== undefined) {
-    if (selectedIndexes.length !== exact) {
-      return false
-    }
-  } else if (range !== undefined) {
-    if (selectedIndexes.length < range.min || selectedIndexes.length > range.max) {
-      return false
-    }
   }
 
   if (

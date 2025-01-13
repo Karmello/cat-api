@@ -8,9 +8,7 @@ const editData = async (db: Db) => {
   await questions.updateMany(
     {},
     {
-      $set: {
-        canBeReanswered: true,
-      },
+      $set: {},
     }
   )
 

@@ -5,9 +5,6 @@ import { ModelName, IQuestionDoc } from 'utils/index'
 
 import {
   checkMaxLength,
-  checkSelectableOptionsExact,
-  checkSelectableOptionsMin,
-  checkSelectableOptionsMax,
   checkOptions,
   checkQuestionCategories,
 } from 'validation/index'
@@ -49,27 +46,6 @@ const questionSchema = new Schema(
         required: true,
       },
     ],
-    selectableOptions: {
-      exact: {
-        type: Number,
-        validate: [checkSelectableOptionsExact],
-      },
-      range: {
-        min: {
-          type: Number,
-          validate: [checkSelectableOptionsMin],
-        },
-        max: {
-          type: Number,
-          validate: [checkSelectableOptionsMax],
-        },
-      },
-    },
-    canBeReanswered: {
-      type: Boolean,
-      required: true,
-      default: true,
-    },
   },
   {
     versionKey: false,

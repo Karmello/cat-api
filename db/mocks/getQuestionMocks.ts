@@ -18,9 +18,7 @@ import questionCategories from './questionCategoryMocks'
 
 const QUESTION_TYPES = [
   QuestionType.SingleChoice,
-  QuestionType.MultiChoiceExact,
-  QuestionType.MultiChoiceRange,
-  QuestionType.Rating,
+  QuestionType.MultiChoice
 ]
 
 const getQuestionMocks = (users: IUser[]) => {
@@ -37,10 +35,7 @@ const getQuestionMocks = (users: IUser[]) => {
       getRandNum(1, QUESTION_MAX_NUM_OF_CATEGORIES)
     )
 
-    const numOfAnswers =
-      type !== QuestionType.Rating
-        ? getRandNum(MIN_NUM_OF_QUESTION_OPTIONS, MAX_NUM_OF_QUESTION_OPTIONS)
-        : [5, 10][getRandNum(0, 1)]
+    const numOfAnswers = getRandNum(MIN_NUM_OF_QUESTION_OPTIONS, MAX_NUM_OF_QUESTION_OPTIONS)
 
     const question = {
       creatorId: user._id,
@@ -64,28 +59,10 @@ const getQuestionMocks = (users: IUser[]) => {
       options: (() => {
         const arr = []
         times(numOfAnswers, (i: number) => {
-          const option =
-            type !== QuestionType.Rating
-              ? faker.lorem.sentence(30).substring(0, ANSWER_INPUT_MAX_LENGTH)
-              : i + 1
+          const option = faker.lorem.sentence(30).substring(0, ANSWER_INPUT_MAX_LENGTH)
           arr.push(option)
         })
         return arr
-      })(),
-      selectableOptions: (() => {
-        const exactNumOfVotes = type !== QuestionType.MultiChoiceRange
-        if (exactNumOfVotes) {
-          const exact =
-            type === QuestionType.MultiChoiceExact ? getRandNum(1, numOfAnswers - 1) : 1
-          return { exact }
-        } else {
-          const min = getRandNum(1, numOfAnswers - 1)
-          const max = getRandNum(min + 1, numOfAnswers)
-
-          return {
-            range: { min, max },
-          }
-        }
       })(),
     } as IQuestion
 
