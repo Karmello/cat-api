@@ -1,3 +1,4 @@
+export { default as checkCorrectOptions } from './checkCorrectOptions'
 export { default as checkCredentialChars } from './checkCredentialChars'
 export { default as checkDateFormat } from './checkDateFormat'
 export { default as checkDateOfBirth } from './checkDateOfBirth'

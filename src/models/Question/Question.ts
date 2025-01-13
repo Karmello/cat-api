@@ -46,6 +46,12 @@ const questionSchema = new Schema(
         required: true,
       },
     ],
+    correctOptions: [
+      {
+        type: Number,
+        required: true
+      }
+    ]
   },
   {
     versionKey: false,
