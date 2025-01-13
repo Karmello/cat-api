@@ -11,6 +11,7 @@
     "start": "cross-env NODE_ENV=production node build/index.js",
     "start-local": "cross-env nodemon -L --exec ts-node -r tsconfig-paths/register src/index.ts",
     "prettier": "prettier --check src/**/*.ts",
+    "prettify": "prettier --write src/**/*.ts",
     "lint": "eslint src/**/*.{ts,tsx}",
     "typecheck": "tsc --noEmit",
     "test": "cross-env NODE_ENV=test mocha -r ts-node/register -r tsconfig-paths/register src/**/*.spec.ts --timeout 10000 --exit",

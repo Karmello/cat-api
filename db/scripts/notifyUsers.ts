@@ -27,15 +27,14 @@ const notifyUsers = async (db: Db) => {
       await sendMail({
         lang: Lang.EN,
         to: u.email,
-        // to: 'nogakamil@gmail.com',
-        subject: "Friendly reminder from the Numbers Don't Lie web application",
+        subject: 'Friendly reminder from the "Can Answer That ?" web application',
         text: `
           Hello ${u.username.toUpperCase()} !
           You are registered in our database, but you haven't made any contribution so far.
-          Please, find some time and answer some of our existing surveys or create your own.
+          Please, find some time and visit the "Can Answer That ?" web app.
           Thank you in advance :)`,
         btnText: 'Go to App',
-        link: 'https://numsdontlie.com',
+        link: 'https://cat-app.com',
       })
     )
   })
