@@ -13,7 +13,7 @@ const getMailTemplate = ({ lang, text, link, btnText }: Args) => {
   const tags = []
 
   if (displayBtn) {
-    tags.push(`<p>${text}</p>`)
+    tags.push(`<p style="font-size: 15px;">${text}</p>`)
   } else {
     tags.push(`<h3>${text}</h3>`)
   }
@@ -27,9 +27,10 @@ const getMailTemplate = ({ lang, text, link, btnText }: Args) => {
           target="new"
           style="
             padding: 10px 20px;
-            color: black;
+            color: white;
             text-decoration: none;
-            background-color: lightblue;
+            font-weight: bold;
+            background-color: #a6192e;
             border-radius: 4px;
             cursor: pointer;
           "
@@ -45,11 +46,12 @@ const getMailTemplate = ({ lang, text, link, btnText }: Args) => {
   tags.push(`
     <div style="text-align: center;">
       <img
-        src="https://cat-fe-assets.s3.eu-central-1.amazonaws.com/logo.png"
-        width="200"
+        src="https://cat-fe-assets.s3.eu-central-1.amazonaws.com/cat-bot-small.jpg"
+        width="250px"
+        style="border-radius: 250px;"
       />
       <br /><br />
-      <p>${dict[lang].mailFooterText}</p>
+      <p style="font-size: 18px;"><b>${dict[lang].mailFooterText}</b></p>
     </div>
   `)
 
