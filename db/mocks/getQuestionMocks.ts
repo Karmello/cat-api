@@ -32,6 +32,15 @@ const getQuestionMocks = (users: IUser[]) => {
       MAX_NUM_OF_QUESTION_OPTIONS
     )
 
+    const options = (() => {
+      const arr = []
+      times(numOfAnswers, (i: number) => {
+        const option = faker.lorem.sentence(30).substring(0, ANSWER_INPUT_MAX_LENGTH)
+        arr.push(option)
+      })
+      return arr
+    })()
+
     const question = {
       creatorId: user._id,
       createdAt: new Date(
@@ -45,14 +54,12 @@ const getQuestionMocks = (users: IUser[]) => {
       text: faker.lorem
         .sentence(30)
         .substring(0, getRandNum(15, QUESTION_INPUT_MAX_LENGTH / 3)),
-      options: (() => {
-        const arr = []
-        times(numOfAnswers, (i: number) => {
-          const option = faker.lorem.sentence(30).substring(0, ANSWER_INPUT_MAX_LENGTH)
-          arr.push(option)
-        })
-        return arr
-      })(),
+      options,
+      correctOptions: getRandNums(
+        0,
+        options.length - 1,
+        type === QuestionType.SingleChoice ? 1 : options.length
+      ),
     } as IQuestion
 
     questionMocks.push(question as IQuestion)

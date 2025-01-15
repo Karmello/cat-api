@@ -8,13 +8,12 @@ import {
   questionCategoryMocks,
 } from '../mocks'
 
-import { emptyDatabase, checkData } from '../scripts'
+import { checkData } from '../scripts'
 import { getCollections } from '../helpers'
 
 const seedDatabase = async (db: Db) => {
   const { users, questions, answers, countries, questionCategories } = getCollections(db)
 
-  await emptyDatabase(db)
   await users.insertMany(userMocks)
   console.log('Users seeded.')
 
