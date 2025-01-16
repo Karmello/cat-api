@@ -6,7 +6,7 @@ import { checkMaxLength, checkOptions } from 'validation/index'
 
 const { model, Schema } = mongoose
 
-const questionSchema = new Schema(
+export const questionSchema = new Schema(
   {
     creatorId: {
       ref: ModelName.User,
