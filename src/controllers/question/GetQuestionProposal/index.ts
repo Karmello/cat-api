@@ -12,11 +12,12 @@ export default (app: Application) => {
     readAuthToken,
     checkAuthToken,
     async (req: Request, res: Response) => {
-      const client = new OpenAI({ apiKey: OPENAI_API_KEY })
+      const openai = new OpenAI({ apiKey: OPENAI_API_KEY })
 
-      const chatCompletion = await client.chat.completions.create({
-        messages: [{ role: 'user', content: 'Say this is a test' }],
+      const completion = await openai.chat.completions.create({
         model: 'gpt-4o',
+        store: true,
+        messages: [{ role: 'user', content: 'write a haiku about ai' }],
       })
     }
   )
