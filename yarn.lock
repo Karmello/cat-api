@@ -4863,10 +4863,10 @@ mongodb@6.2.0:
     bson "^6.2.0"
     mongodb-connection-string-url "^2.6.0"
 
-mongoose-unique-validator@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/mongoose-unique-validator/-/mongoose-unique-validator-4.0.0.tgz#b9310fa6b67482f4daccc2807af1bd68e6e91d4d"
-  integrity sha512-lOvL7wOZ8wM2Kggk6zPZuglmld7hmzf6TdNk/h9EidTH9iZNLl3Y2ZgRPjYd/so1AODLawehY56roa6HjX6jew==
+mongoose-unique-validator@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/mongoose-unique-validator/-/mongoose-unique-validator-5.0.1.tgz#c14824d675997f25c1a1779c3223eabf15bd1103"
+  integrity sha512-nLu4PZCHDdOexyVrnWQHW1bwunxJdqyFPJEskZGuLY1GIUB/1+HQrWtFeeVpc7b2q6rCzbJK7DQ191hEivR/ew==
   dependencies:
     lodash.foreach "^4.1.0"
     lodash.get "^4.0.2"
