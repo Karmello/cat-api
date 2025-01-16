@@ -1,6 +1,6 @@
 import { IQuestionCategory } from 'cat-shared/utils'
 
-const questionCategoryMocks = [
+const QUESTION_CATEGORY_MOCKS = [
   { _id: '67853c6f182c98ed8158532d', name: { en: 'Architecture', pl: 'Architektura' } },
   { _id: '67853c6f182c98ed8158532e', name: { en: 'Arts', pl: 'Sztuka' } },
   { _id: '67853c6f182c98ed8158532f', name: { en: 'Banking', pl: 'Bankowość' } },
@@ -97,4 +97,4 @@ const questionCategoryMocks = [
   { _id: '67853c6f182c98ed81585357', name: { en: 'Other', pl: 'Inne' } },
 ] as IQuestionCategory[]
 
-export default questionCategoryMocks
+export default QUESTION_CATEGORY_MOCKS
