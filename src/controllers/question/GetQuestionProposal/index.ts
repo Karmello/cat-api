@@ -3,9 +3,8 @@ import OpenAI from 'openai'
 
 import { ApiUrlPath } from 'cat-shared/utils'
 import { getRandNum } from 'cat-shared/helpers'
-import QUESTION_CATEGORY_MOCKS from 'db/mocks/questionCategoryMocks'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
-import { QuestionProposalModel } from 'models/index'
+import { QuestionProposalModel, QuestionCategoryModel } from 'models/index'
 import { sendBadResponse } from 'helpers/index'
 import msgs from 'utils/msgs'
 
@@ -29,63 +28,74 @@ export default (app: Application) => {
     ApiUrlPath.GetQuestionProposal,
     readAuthToken,
     checkAuthToken,
-    async (req: Request, res: Response) => {
+    (req: Request, res: Response) => {
       const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
-      const categoryObj =
-        QUESTION_CATEGORY_MOCKS[getRandNum(0, QUESTION_CATEGORY_MOCKS.length - 1)]
-      const category = categoryObj.name.en
-      const chatMsg = getChatMessage(category)
+      QuestionCategoryModel.find()
+        .then(async categories => {
+          const categoryObj = categories[getRandNum(0, categories.length - 1)]
+          const category = categoryObj.name.en
+          const chatMsg = getChatMessage(category)
 
-      await openai.chat.completions
-        .create({
-          model: 'gpt-4o-mini',
-          store: true,
-          messages: [{ role: 'user', content: chatMsg }],
-        })
-        .then(completion => {
-          let content = ''
-
-          try {
-            content = completion.choices[0].message.content
-            content = content.substring(7, content.length - 3)
-            content = content.replace(category, categoryObj._id)
-
-            const question = new QuestionProposalModel({
-              creatorId: req.decoded._id,
-              ...JSON.parse(content),
+          await openai.chat.completions
+            .create({
+              model: 'gpt-4o-mini',
+              store: true,
+              messages: [{ role: 'user', content: chatMsg }],
             })
+            .then(completion => {
+              let content = ''
 
-            question
-              .save()
-              .then(newQuestion => {
-                res.status(200).send(newQuestion)
-              })
-              .catch(err => {
+              try {
+                content = completion.choices[0].message.content
+                content = content.substring(7, content.length - 3)
+                content = content.replace(category, categoryObj._id)
+
+                const question = new QuestionProposalModel({
+                  creatorId: req.decoded._id,
+                  ...JSON.parse(content),
+                })
+
+                question
+                  .save()
+                  .then(newQuestion => {
+                    res.status(200).send(newQuestion)
+                  })
+                  .catch(err => {
+                    sendBadResponse(
+                      req,
+                      res,
+                      400,
+                      { msg: msgs.SOMETHING_WENT_WRONG, valErr: err },
+                      err
+                    )
+                  })
+              } catch {
                 sendBadResponse(
                   req,
                   res,
                   400,
-                  { msg: msgs.SOMETHING_WENT_WRONG, valErr: err },
-                  err
+                  { msg: msgs.SOMETHING_WENT_WRONG, valErr: completion },
+                  completion
                 )
-              })
-          } catch {
-            sendBadResponse(
-              req,
-              res,
-              400,
-              { msg: msgs.SOMETHING_WENT_WRONG, valErr: completion },
-              completion
-            )
-          }
+              }
+            })
+            .catch(err => {
+              sendBadResponse(
+                req,
+                res,
+                400,
+                { msg: msgs.COULD_NOT_GET_DATA, valErr: err },
+                err
+              )
+            })
         })
         .catch(err => {
           sendBadResponse(
             req,
             res,
             400,
-            { msg: msgs.COULD_NOT_GET_DATA, valErr: err },
+            { msg: msgs.SOMETHING_WENT_WRONG, valErr: err },
             err
           )
         })

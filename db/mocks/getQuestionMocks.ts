@@ -13,7 +13,7 @@ import {
 
 import { getRandNum, getRandNums } from 'cat-shared/helpers'
 import { msInDay } from '../constants'
-import questionCategories from './questionCategoryMocks'
+import QUESTION_CATEGORY_MOCKS from './questionCategoryMocks'
 
 const QUESTION_TYPES = [QuestionType.SingleChoice, QuestionType.MultiChoice]
 
@@ -25,7 +25,7 @@ const getQuestionMocks = (users: IUser[]) => {
 
     const type = QUESTION_TYPES[getRandNum(0, QUESTION_TYPES.length - 1)]
 
-    const categoryIndex = getRandNum(0, questionCategories.length - 1)
+    const categoryIndex = getRandNum(0, QUESTION_CATEGORY_MOCKS.length - 1)
 
     const numOfAnswers = getRandNum(
       MIN_NUM_OF_QUESTION_OPTIONS,
@@ -50,7 +50,7 @@ const getQuestionMocks = (users: IUser[]) => {
         })
       ).getTime(),
       type,
-      category: questionCategories[categoryIndex]._id.toString(),
+      category: QUESTION_CATEGORY_MOCKS[categoryIndex]._id.toString(),
       text: faker.lorem
         .sentence(30)
         .substring(0, getRandNum(15, QUESTION_INPUT_MAX_LENGTH / 3)),
