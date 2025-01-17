@@ -92,6 +92,24 @@ const routesConfig = [
     auth: true,
     confirmed: true,
   },
+  {
+    path: ApiUrlPath.GetQuestionProposal,
+    auth: true,
+    confirmed: true,
+    admin: true,
+  },
+  {
+    path: ApiUrlPath.GetProposedQuestions,
+    auth: true,
+    confirmed: true,
+    admin: true,
+  },
+  {
+    path: ApiUrlPath.DeleteProposedQuestions,
+    auth: true,
+    confirmed: true,
+    admin: true,
+  },
 ]
 
 export default (req: Request, res: Response, next: NextFunction) => {
@@ -103,7 +121,8 @@ export default (req: Request, res: Response, next: NextFunction) => {
       (route.activateMailToken && !req.decoded.isActivateMailToken) ||
       (route.recoverMailToken && !req.decoded.isRecoverMailToken) ||
       (route.confirmed && !req.decoded.confirmed) ||
-      (route.paid && !req.decoded.payment))
+      (route.paid && !req.decoded.payment) ||
+      (route.admin && req.decoded._id !== process.env.ADMIN_USER_ID))
   ) {
     sendBadResponse(req, res, 403, { msg: msgs.ILLEGAL_ACTION })
   } else {
