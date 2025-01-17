@@ -40,9 +40,11 @@ export default (app: Application) => {
                   sendBadResponse(req, res, 401, { msg: msgs.AUTHENTICATION_FAILED }, err)
                 } else {
                   res.setHeader(X_AUTH_TOKEN, getFreshAuthToken(doc))
-                  res.status(200).send({
-                    user: doc,
-                  })
+                  const body = { user: doc, isAdmin: undefined }
+                  if (body.user._id.toString() === process.env.ADMIN_USER_ID) {
+                    body.isAdmin = true
+                  }
+                  res.status(200).send(body)
                 }
               })
             } else {
@@ -53,9 +55,11 @@ export default (app: Application) => {
           } else {
             if (doc) {
               res.setHeader(X_AUTH_TOKEN, getFreshAuthToken(doc))
-              res.status(200).send({
-                user: doc,
-              })
+              const body = { user: doc, isAdmin: undefined }
+              if (body.user._id.toString() === process.env.ADMIN_USER_ID) {
+                body.isAdmin = true
+              }
+              res.status(200).send(body)
             } else {
               sendBadResponse(req, res, 401, {
                 msg: msgs.AUTHENTICATION_FAILED,
