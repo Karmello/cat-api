@@ -30,7 +30,13 @@ import {
   GetQuestionProposal,
 } from './question/index'
 
-import { GetQuestions, GetRandomQuestions, GetProposedQuestions } from './questions/index'
+import {
+  GetQuestions,
+  GetRandomQuestions,
+  GetProposedQuestions,
+  DeleteProposedQuestions,
+} from './questions/index'
+
 import { CreateAnswer } from './answer/index'
 import { CreateFollow, DeleteFollow } from './follow/index'
 import { CreateReport } from './report/index'
@@ -68,6 +74,7 @@ const registerControllers = (app: Application) => {
   GetProposedQuestions(app)
   GetQuestions(app)
   GetRandomQuestions(app)
+  DeleteProposedQuestions(app)
 
   // answer
   CreateAnswer(app)
