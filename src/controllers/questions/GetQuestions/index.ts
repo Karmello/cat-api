@@ -55,7 +55,7 @@ export default (app: Application) => {
             $facet: {
               meta: [{ $count: 'count' }],
               docs: [
-                { $project: { correctOptions: 0 } },
+                { $project: { correctOptions: 0, explanation: 0 } },
                 { $sort: { createdAt: -1 } },
                 { $skip },
                 { $limit },
@@ -85,7 +85,7 @@ export default (app: Application) => {
           {
             $facet: {
               meta: [{ $count: 'count' }],
-              docs: [{ $project: { correctOptions: 0, answers: 0 } }],
+              docs: [{ $project: { correctOptions: 0, explanation: 0, answers: 0 } }],
             },
           },
         ])
@@ -109,7 +109,7 @@ export default (app: Application) => {
               },
             },
           },
-          { $project: { correctOptions: 0, votes: 0 } },
+          { $project: { correctOptions: 0, explanation: 0, votes: 0 } },
           {
             $facet: {
               meta: [{ $count: 'count' }],
@@ -142,7 +142,7 @@ export default (app: Application) => {
               requestorAnsweredAt: { $first: '$answers.answeredAt' },
             },
           },
-          { $project: { correctOptions: 0, answers: 0 } },
+          { $project: { correctOptions: 0, explanation: 0, answers: 0 } },
           { $sort: { requestorAnsweredAt: -1 } },
           {
             $facet: {
@@ -158,7 +158,7 @@ export default (app: Application) => {
             $facet: {
               meta: [{ $count: 'count' }],
               docs: [
-                { $project: { correctOptions: 0 } },
+                { $project: { correctOptions: 0, explanation: 0 } },
                 { $sort: { createdAt: -1 } },
                 { $skip },
                 { $limit },
@@ -185,7 +185,7 @@ export default (app: Application) => {
             },
           },
           { $sort: { 'follows.followedAt': -1 } },
-          { $project: { correctOptions: 0, follows: 0 } },
+          { $project: { correctOptions: 0, explanation: 0, follows: 0 } },
           {
             $facet: {
               meta: [{ $count: 'count' }],

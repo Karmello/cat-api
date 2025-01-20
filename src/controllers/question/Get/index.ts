@@ -48,6 +48,7 @@ export default (app: Application) => {
               if (!requestorAnswer) {
                 const questionObj = question.toObject()
                 delete questionObj.correctOptions
+                delete questionObj.explanation
 
                 return res.status(200).send({
                   count: 1,

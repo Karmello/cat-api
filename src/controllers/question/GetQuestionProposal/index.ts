@@ -20,6 +20,7 @@ const getChatMessage = (category: string) => `
     "text": "", // content of question
     "options": [], // randomized array of possible answers as strings
     "correctOptions: [] // indexes of correct answers in "options" array
+    "explanation": "" // information explaining correct answers
   }
 `
 

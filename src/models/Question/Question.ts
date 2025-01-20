@@ -45,6 +45,10 @@ export const questionSchema = new Schema(
         required: true,
       },
     ],
+    explanation: {
+      type: String,
+      default: '',
+    },
   },
   {
     versionKey: false,
