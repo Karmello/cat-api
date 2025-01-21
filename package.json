@@ -81,6 +81,7 @@
   "resolutions": {
     "mongoose": ">=7.4.4",
     "engine.io": ">=6.4.2",
-    "got": ">=11.8.5"
+    "got": ">=11.8.5",
+    "cookie": ">=0.7.0"
   }
 }
