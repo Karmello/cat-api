@@ -26,7 +26,7 @@ export default (app: Application) => {
     checkAuthToken,
     checkRequest,
     (req: Request, res: Response) => {
-      const { userId, filter, pageNo, categories, search } =
+      const { userId, filter, pageNo, category, search } =
         req.query as unknown as IRequestQuery
 
       const $skip = (Number(pageNo) - 1) * READ_QUESTIONS_MAX
@@ -34,9 +34,9 @@ export default (app: Application) => {
 
       const $match = {} as Record<string, unknown>
 
-      if (categories) {
+      if (category) {
         $match.category = {
-          $in: categories.split('_').map(id => new ObjectId(id)),
+          $in: [new ObjectId(category)],
         }
       }
 
