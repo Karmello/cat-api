@@ -1,8 +1,13 @@
 import mongoose from 'mongoose'
 
-import { QUESTION_INPUT_MAX_LENGTH, QuestionType } from 'cat-shared/utils/index'
+import {
+  QUESTION_EXPLANATION_MAX_LENGTH,
+  QUESTION_EXPLANATION_MIN_LENGTH,
+  QUESTION_INPUT_MAX_LENGTH,
+  QuestionType,
+} from 'cat-shared/utils/index'
 import { ModelName, IQuestionDoc } from 'utils/index'
-import { checkMaxLength, checkOptions } from 'validation/index'
+import { checkMinLength, checkMaxLength, checkOptions } from 'validation/index'
 
 const { model, Schema } = mongoose
 
@@ -47,7 +52,11 @@ export const questionSchema = new Schema(
     ],
     explanation: {
       type: String,
-      default: '',
+      required: true,
+      validate: [
+        checkMinLength(QUESTION_EXPLANATION_MIN_LENGTH),
+        checkMaxLength(QUESTION_EXPLANATION_MAX_LENGTH),
+      ],
     },
   },
   {
