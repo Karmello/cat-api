@@ -8,11 +8,19 @@ import { QuestionProposalModel, QuestionCategoryModel } from 'models/index'
 import { sendBadResponse } from 'helpers/index'
 import msgs from 'utils/msgs'
 
+const EXAMPLE_TOPIC = {
+  sport: ['NBA', 'UEFA Champions League', 'Fifa World Cup'],
+  film: ['Oscars', 'movie directors', 'movie actors'],
+  music: ["80's music", "90's music"],
+  tv: ['tv series'],
+}
+
 const getChatMessage = (category: string) => `
   please,
   generate an example quiz question for me,
-  the question should be hard to guess,
-  please return just JSON
+  the question difficulty level should be chosen randomly (easy, normal, hard),
+  ${EXAMPLE_TOPIC[category] ? `an example topic for category ${category} could be one of those: ${EXAMPLE_TOPIC[category].join(', ')}` : ''}
+  please return just JSON as below
 
   {
     "type": "SINGLE_CHOICE" or "MULTI_CHOICE", // pick value randomly
