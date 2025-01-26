@@ -39,6 +39,7 @@ export default (app: Application) => {
             },
           },
         ]),
+        QuestionModel.countDocuments(),
       ])
         .then(results => {
           const user = results[0].toJSON() as IUser
@@ -56,6 +57,7 @@ export default (app: Application) => {
             questions: results[1],
             answers: results[2].length,
             correctAnswers: correctAnswers.length,
+            questionsTotal: results[3],
           }
 
           if (
