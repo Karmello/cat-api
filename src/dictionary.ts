@@ -3,20 +3,20 @@ import { Lang } from 'cat-shared/utils/index'
 const dict = {
   [Lang.EN]: {
     activation: {
-      subject: 'CAT App - account activation',
+      subject: '"Can Answer That ?" - account activation',
       text: 'Use this button to activate the account for',
       btnText: 'Activate',
       emailConfirmed: 'Your email address has been confirmed. You can close this window.',
     },
     deactivation: {
-      subject: 'CAT App - account deactivation',
+      subject: '"Can Answer That ?" - account deactivation',
       text: 'Use this button to deactivate the account for',
       btnText: 'Deactivate',
       accountDeactivatedMsg:
         'Your account has been completely deactivated. You can close this window.',
     },
     passwordRecovery: {
-      subject: 'CAT App - password recovery',
+      subject: '"Can Answer That ?" - password recovery',
       text: 'Use this button to enable password update for',
       btnText: 'Enable',
       enterNewPassword:
@@ -25,33 +25,7 @@ const dict = {
     noSuchUser: 'No such user.',
     emailAlreadyConfirmed: 'Email already confirmed.',
     somethingWentWrong: 'Something went wrong.',
-    mailFooterText: 'CAT App wishes you a great day !',
-  },
-  [Lang.PL]: {
-    activation: {
-      subject: 'Aktywacja konta w CAT App',
-      text: 'Użyj tego przycisku aby aktywować konto użytkownika',
-      btnText: 'Aktywuj',
-      emailConfirmed: 'Twój email został potwierdzony. Możesz zamknąć to okno.',
-    },
-    deactivation: {
-      subject: 'Deaktywacja konta w CAT App',
-      text: 'Użyj tego przycisku aby deaktywować konto użytkownika',
-      btnText: 'Deaktywuj',
-      accountDeactivatedMsg:
-        'Twoje konto zostało właśnie całkowicie usunięte. Możesz zamknąć to okno.',
-    },
-    passwordRecovery: {
-      subject: 'Odzyskiwanie hasła w CAT App',
-      text: 'Użyj tego przycisku aby umożliwić zmianę hasła dla użytkownika',
-      btnText: 'Włącz',
-      enterNewPassword:
-        'Możesz zamknąć to okno, wrócić do aplikacji i wprowadzić swoje nowe hasło.',
-    },
-    noSuchUser: 'Nie ma takiego użytkownika.',
-    emailAlreadyConfirmed: 'Twój email został już wcześniej potwierdzony.',
-    somethingWentWrong: 'Nie udało się wykonać żądania.',
-    mailFooterText: 'CAT App życzy miłego dnia !',
+    mailFooterText: '"Can Answer That ?" app wishes you a great day !',
   },
 }
 

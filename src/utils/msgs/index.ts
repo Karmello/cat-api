@@ -7,31 +7,31 @@ export default {
   },
   [AppMsgCode.AuthenticationFailed]: {
     code: AppMsgCode.AuthenticationFailed,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.NoCredentialsProvided]: {
     code: AppMsgCode.NoCredentialsProvided,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.TokenExpired]: {
     code: AppMsgCode.TokenExpired,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.NoSuchUser]: {
     code: AppMsgCode.NoSuchUser,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.NoSuchQuestion]: {
     code: AppMsgCode.NoSuchQuestion,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.EmailNotConfirmed]: {
     code: AppMsgCode.EmailNotConfirmed,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.NotFullAccount]: {
     code: AppMsgCode.NotFullAccount,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.IllegalAction]: {
     code: AppMsgCode.IllegalAction,
@@ -55,7 +55,7 @@ export default {
   },
   [AppMsgCode.PasswordRecovered]: {
     code: AppMsgCode.PasswordRecovered,
-    type: AppMsgType.Info,
+    type: AppMsgType.Success,
   },
   [AppMsgCode.AvatarUpdated]: {
     code: AppMsgCode.AvatarUpdated,
@@ -67,7 +67,7 @@ export default {
   },
   [AppMsgCode.EmailAlreadyConfirmed]: {
     code: AppMsgCode.EmailAlreadyConfirmed,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.EmailConfirmed]: {
     code: AppMsgCode.EmailConfirmed,
@@ -79,7 +79,7 @@ export default {
   },
   [AppMsgCode.PaymentAlreadyMade]: {
     code: AppMsgCode.PaymentAlreadyMade,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.CouldNotGetData]: {
     code: AppMsgCode.CouldNotGetData,
@@ -87,11 +87,11 @@ export default {
   },
   [AppMsgCode.QuestionAlreadyFollowed]: {
     code: AppMsgCode.QuestionAlreadyFollowed,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.QuestionAlreadyUnfollowed]: {
     code: AppMsgCode.QuestionAlreadyUnfollowed,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.QuestionDeleted]: {
     code: AppMsgCode.QuestionDeleted,
@@ -99,7 +99,7 @@ export default {
   },
   [AppMsgCode.QuestionMustHaveBeenDeleted]: {
     code: AppMsgCode.QuestionMustHaveBeenDeleted,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.QuestionCreated]: {
     code: AppMsgCode.QuestionCreated,
@@ -111,7 +111,7 @@ export default {
   },
   [AppMsgCode.QuestionAlreadyReported]: {
     code: AppMsgCode.QuestionAlreadyReported,
-    type: AppMsgType.Warning,
+    type: AppMsgType.Error,
   },
   [AppMsgCode.QuestionFollowed]: {
     code: AppMsgCode.QuestionFollowed,
