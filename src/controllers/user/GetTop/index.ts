@@ -1,4 +1,5 @@
 import { Application, Request, Response } from 'express'
+import mongoose from 'mongoose'
 import get from 'lodash/get'
 
 import { ApiUrlPath } from 'cat-shared/utils/index'
@@ -7,6 +8,8 @@ import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { UserModel } from 'models/index'
 import { sendBadResponse } from 'helpers/index'
 
+const ObjectId = mongoose.Types.ObjectId
+
 export default (app: Application) => {
   app.get(
     ApiUrlPath.GetTopUsers,
@@ -14,6 +17,11 @@ export default (app: Application) => {
     checkAuthToken,
     (req: Request, res: Response) => {
       UserModel.aggregate([
+        {
+          $match: {
+            _id: { $not: { $in: [new ObjectId(process.env.ADMIN_USER_ID)] } },
+          },
+        },
         {
           $lookup: {
             from: 'questions',
