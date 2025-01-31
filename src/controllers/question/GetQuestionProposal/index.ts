@@ -2,30 +2,22 @@ import { Application, Request, Response } from 'express'
 import OpenAI from 'openai'
 
 import { ApiUrlPath } from 'cat-shared/utils'
-import { getRandNum } from 'cat-shared/helpers'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { QuestionProposalModel, QuestionCategoryModel } from 'models/index'
 import { sendBadResponse } from 'helpers/index'
 import msgs from 'utils/msgs'
 
-const EXAMPLE_TOPIC = {
-  sport: ['NBA', 'UEFA Champions League', 'Fifa World Cup'],
-  film: ['Oscars', 'movie directors', 'movie actors'],
-  music: ["80's music", "90's music"],
-  tv: ['tv series'],
-}
-
-const getChatMessage = (category: string) => `
+const getChatMessage = (categoryName: string, subject = 'free') => `
   please,
   generate an example quiz question for me,
   the question difficulty level should be chosen randomly (easy, normal, hard),
-  ${EXAMPLE_TOPIC[category] ? `an example topic for category ${category} could be one of those: ${EXAMPLE_TOPIC[category].join(', ')},` : ''}
-  please do not repeat yourself,
+  category is ${categoryName},
+  subject is ${subject},
   please return just JSON as below:
 
   {
     "type": "SINGLE_CHOICE" or "MULTI_CHOICE", // pick value randomly
-    "category": ${category},
+    "category": ${categoryName},
     "text": "", // content of question
     "options": [], // randomized array of possible answers as strings
     "correctOptions: [] // indexes of correct answers in "options" array
@@ -39,13 +31,16 @@ export default (app: Application) => {
     readAuthToken,
     checkAuthToken,
     (req: Request, res: Response) => {
+      const { category, subject } = req.query
+
       const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
       QuestionCategoryModel.find()
         .then(async categories => {
-          const categoryObj = categories[getRandNum(0, categories.length - 1)]
-          const category = categoryObj.name.en
-          const chatMsg = getChatMessage(category)
+          const categoryObj = categories.find(c => c._id.toString() === category)
+          console.log(categoryObj)
+          const categoryName = categoryObj.name.en
+          const chatMsg = getChatMessage(categoryName, String(subject))
 
           await openai.chat.completions
             .create({
@@ -59,7 +54,7 @@ export default (app: Application) => {
               try {
                 content = completion.choices[0].message.content
                 content = content.substring(7, content.length - 3)
-                content = content.replace(category, categoryObj._id)
+                content = content.replace(categoryName, categoryObj._id)
 
                 const question = new QuestionProposalModel({
                   creatorId: req.decoded._id,
