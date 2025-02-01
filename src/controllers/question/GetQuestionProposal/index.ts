@@ -38,7 +38,6 @@ export default (app: Application) => {
       QuestionCategoryModel.find()
         .then(async categories => {
           const categoryObj = categories.find(c => c._id.toString() === category)
-          console.log(categoryObj)
           const categoryName = categoryObj.name.en
           const chatMsg = getChatMessage(categoryName, String(subject))
 
