@@ -3,9 +3,9 @@ import { Lang } from 'cat-shared/utils/index'
 const dict = {
   [Lang.EN]: {
     activation: {
-      subject: '"Can Answer That ?" - account activation',
-      text: 'Use this button to activate the account for',
-      btnText: 'Activate',
+      subject: '"Can Answer That ?" - account verification',
+      text: 'Use this button to verify your email and activate the account for',
+      btnText: 'Verify',
       emailConfirmed: 'Your email address has been confirmed. You can close this window.',
     },
     deactivation: {
