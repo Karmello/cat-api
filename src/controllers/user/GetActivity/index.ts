@@ -15,7 +15,7 @@ export default (app: Application) => {
     readAuthToken,
     checkAuthToken,
     (req: Request, res: Response) => {
-      const { _id } = req.query
+      const { _id } = req.decoded
 
       Promise.all([
         QuestionModel.aggregate([
