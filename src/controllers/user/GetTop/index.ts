@@ -19,15 +19,18 @@ export default (app: Application) => {
       UserModel.aggregate([
         {
           $match: {
-            _id: { $not: { $in: [new ObjectId(process.env.ADMIN_USER_ID)] } },
+            _id: {
+              $not: {
+                $in: [new ObjectId('678806d4274e9d0b993be702')],
+              },
+            },
+            'config.confirmed': true,
           },
         },
         {
-          $lookup: {
-            from: 'questions',
-            localField: '_id',
-            foreignField: 'creatorId',
-            as: 'questionsCount',
+          $project: {
+            _id: '$_id',
+            username: '$username',
           },
         },
         {
@@ -35,31 +38,54 @@ export default (app: Application) => {
             from: 'answers',
             localField: '_id',
             foreignField: 'answererId',
-            as: 'questionSubmissionsCount',
+            as: 'user_answers',
           },
         },
         {
           $match: {
-            'config.confirmed': true,
+            'user_answers.1': {
+              $exists: true,
+            },
+          },
+        },
+        {
+          $unwind: {
+            path: '$user_answers',
+          },
+        },
+        {
+          $lookup: {
+            from: 'questions',
+            localField: 'user_answers.questionId',
+            foreignField: '_id',
+            as: 'question',
+          },
+        },
+        {
+          $unwind: {
+            path: '$question',
           },
         },
         {
           $addFields: {
-            score: {
-              $add: [
-                { $size: '$questionsCount' },
-                { $size: '$questionSubmissionsCount' },
-              ],
+            correct: {
+              $setEquals: ['$user_answers.selectedIndexes', '$question.correctOptions'],
             },
           },
         },
         {
           $match: {
-            score: { $gt: 0 },
+            correct: true,
+          },
+        },
+        {
+          $group: {
+            _id: '$_id',
+            username: { $first: '$username' },
+            score: { $count: {} },
           },
         },
         { $sort: { score: -1, 'config.registeredAt': -1 } },
-        { $project: { questionsCount: 0, questionSubmissionsCount: 0, score: 0 } },
         {
           $facet: {
             meta: [{ $count: 'count' }],
