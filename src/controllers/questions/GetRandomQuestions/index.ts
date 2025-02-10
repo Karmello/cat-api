@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express'
-import mongoose from 'mongoose'
+import mongoose, { PipelineStage } from 'mongoose'
 import times from 'lodash/times'
 
 import { ApiUrlPath } from 'cat-shared/utils/index'
@@ -19,7 +19,9 @@ export default (app: Application) => {
     readAuthToken,
     checkAuthToken,
     (req: Request, res: Response) => {
-      QuestionModel.aggregate([
+      const categoryId = req.query.category as string
+
+      const pipeline = [
         {
           $lookup: {
             from: 'answers',
@@ -43,7 +45,17 @@ export default (app: Application) => {
         {
           $project: { ids: true, _id: false },
         },
-      ])
+      ] as PipelineStage[]
+
+      if (categoryId) {
+        pipeline.unshift({
+          $match: {
+            category: new ObjectId(categoryId),
+          },
+        })
+      }
+
+      QuestionModel.aggregate(pipeline)
         .then(results => {
           const ids = results[0]?.ids || []
           const randomIndexes = getRandNums(
