@@ -43,7 +43,7 @@ export default (app: Application) => {
         },
         {
           $match: {
-            'user_answers.1': {
+            'user_answers.0': {
               $exists: true,
             },
           },

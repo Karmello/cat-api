@@ -20,6 +20,7 @@ export default (app: Application) => {
       try {
         Promise.all([
           UserModel.findOne({ _id }),
+          QuestionModel.countDocuments(),
           QuestionModel.countDocuments({ creatorId: _id }),
           QuestionModel.aggregate([
             {
@@ -27,39 +28,71 @@ export default (app: Application) => {
                 from: 'answers',
                 localField: '_id',
                 foreignField: 'questionId',
-                as: 'answers',
+                as: 'question_answers',
               },
             },
-            { $unwind: '$answers' },
-            { $match: { 'answers.answererId': new ObjectId(_id) } },
+            {
+              $match: {
+                'question_answers.0': {
+                  $exists: true,
+                },
+              },
+            },
+            { $unwind: '$question_answers' },
+            {
+              $match: {
+                'question_answers.answererId': new ObjectId(_id),
+              },
+            },
             {
               $group: {
                 _id: '$_id',
-                correctOptions: { $first: '$correctOptions' },
-                selectedIndexes: { $first: '$answers.selectedIndexes' },
+                category: {
+                  $first: '$category',
+                },
+                correctOptions: {
+                  $first: '$correctOptions',
+                },
+                selectedIndexes: {
+                  $first: '$question_answers.selectedIndexes',
+                },
+              },
+            },
+            {
+              $addFields: {
+                correct: {
+                  $setEquals: ['$selectedIndexes', '$correctOptions'],
+                },
+              },
+            },
+            {
+              $group: {
+                _id: '$category',
+                category: {
+                  $first: '$category',
+                },
+                count: {
+                  $sum: 1,
+                },
+                correctCount: {
+                  $sum: {
+                    $cond: [{ $eq: ['$correct', true] }, 1, 0],
+                  },
+                },
+              },
+            },
+            {
+              $project: {
+                _id: 0,
+                category: 1,
+                count: 1,
+                correctCount: 1,
               },
             },
           ]),
-          QuestionModel.countDocuments(),
         ])
           .then(results => {
             const user = results[0].toJSON() as IUser
-
-            const correctAnswers = results[2].filter(
-              ({ correctOptions, selectedIndexes }) => {
-                return (
-                  correctOptions.sort((a: number, b: number) => a - b).toString() ===
-                  selectedIndexes.sort((a: number, b: number) => a - b).toString()
-                )
-              }
-            )
-
-            const count = {
-              questions: results[1],
-              answers: results[2].length,
-              correctAnswers: correctAnswers.length,
-              questionsTotal: results[3],
-            }
 
             if (
               !user ||
@@ -68,6 +101,12 @@ export default (app: Application) => {
             ) {
               sendBadResponse(req, res, 404, { msg: msgs.NO_SUCH_USER })
             } else {
+              const count = {
+                questionsTotal: results[1],
+                questionsByUser: results[2],
+                answersStats: results[3],
+              }
+
               res.status(200).send({
                 data: { count, user },
               })
