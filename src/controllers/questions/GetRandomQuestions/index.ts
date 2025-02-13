@@ -11,7 +11,7 @@ import msgs from 'utils/msgs'
 
 const ObjectId = mongoose.Types.ObjectId
 
-const MAX_INDEXES_TO_RETURN = 100
+const MAX_INDEXES_TO_RETURN = 1
 
 export default (app: Application) => {
   app.get(
@@ -55,9 +55,14 @@ export default (app: Application) => {
         })
       }
 
-      QuestionModel.aggregate(pipeline)
+      Promise.all([
+        categoryId
+          ? QuestionModel.countDocuments({ category: new ObjectId(categoryId) })
+          : QuestionModel.countDocuments(),
+        QuestionModel.aggregate(pipeline),
+      ])
         .then(results => {
-          const ids = results[0]?.ids || []
+          const ids = results[1][0]?.ids || []
           const randomIndexes = getRandNums(
             0,
             ids.length - 1,
@@ -67,7 +72,9 @@ export default (app: Application) => {
           times(randomIndexes.length, i => {
             data.push(ids[randomIndexes[i]])
           })
-          res.status(200).send({ data })
+          res
+            .status(200)
+            .send({ count: { total: results[0], notAnsweredTotal: ids.length }, data })
         })
         .catch(err => {
           sendBadResponse(req, res, 400, { msg: msgs.COULD_NOT_GET_DATA }, err)
