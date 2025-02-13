@@ -1529,10 +1529,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
 
-"@faker-js/faker@^9.4.0":
-  version "9.4.0"
-  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-9.4.0.tgz#3e85604df3a318729436677565e9433d964276d2"
-  integrity sha512-85+k0AxaZSTowL0gXp8zYWDIrWclTbRPg/pm/V0dSFZ6W6D4lhcG3uuZl4zLsEKfEvs69xDbLN2cHQudwp95JA==
+"@faker-js/faker@^9.5.0":
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-9.5.0.tgz#ce254c83706250ca8a5a0e05683608160610dd84"
+  integrity sha512-3qbjLv+fzuuCg3umxc9/7YjrEXNaKwHgmig949nfyaTx8eL4FAsvFbu+1JcFUj1YAXofhaDn6JdEUBTYuk0Ssw==
 
 "@honeybadger-io/core@^6.6.0":
   version "6.6.0"
