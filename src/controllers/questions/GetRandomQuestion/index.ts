@@ -1,9 +1,8 @@
 import { Application, Request, Response } from 'express'
 import mongoose, { PipelineStage } from 'mongoose'
-import times from 'lodash/times'
 
 import { ApiUrlPath } from 'cat-shared/utils/index'
-import { getRandNums } from 'cat-shared/helpers/index'
+import { getRandNum } from 'cat-shared/helpers/index'
 import { QuestionModel } from 'models/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { sendBadResponse } from 'helpers/index'
@@ -11,11 +10,9 @@ import msgs from 'utils/msgs'
 
 const ObjectId = mongoose.Types.ObjectId
 
-const MAX_INDEXES_TO_RETURN = 1
-
 export default (app: Application) => {
   app.get(
-    ApiUrlPath.GetRandomQuestions,
+    ApiUrlPath.GetRandomQuestion,
     readAuthToken,
     checkAuthToken,
     (req: Request, res: Response) => {
@@ -63,18 +60,29 @@ export default (app: Application) => {
       ])
         .then(results => {
           const ids = results[1][0]?.ids || []
-          const randomIndexes = getRandNums(
-            0,
-            ids.length - 1,
-            ids.length < MAX_INDEXES_TO_RETURN ? ids.length : MAX_INDEXES_TO_RETURN
-          )
-          const data = []
-          times(randomIndexes.length, i => {
-            data.push(ids[randomIndexes[i]])
-          })
-          res
-            .status(200)
-            .send({ count: { total: results[0], notAnsweredTotal: ids.length }, data })
+          const randomIndex = getRandNum(0, ids.length - 1)
+
+          if (ids.length) {
+            QuestionModel.findOne(
+              { _id: ids[randomIndex] },
+              { correctOptions: 0, explanation: 0 }
+            )
+              .then(doc => {
+                res.status(200).send({
+                  count: { total: results[0], notAnsweredTotal: ids.length },
+                  data: [doc],
+                })
+              })
+              .catch(err => {
+                console.log(err)
+                sendBadResponse(req, res, 400, { msg: msgs.COULD_NOT_GET_DATA }, err)
+              })
+          } else {
+            res.status(200).send({
+              count: { total: results[0], notAnsweredTotal: 0 },
+              data: [],
+            })
+          }
         })
         .catch(err => {
           sendBadResponse(req, res, 400, { msg: msgs.COULD_NOT_GET_DATA }, err)

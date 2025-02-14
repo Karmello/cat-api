@@ -74,7 +74,9 @@ export default (app: Application) => {
                     })
 
                     res.status(200).send({
-                      count: 1,
+                      count: {
+                        total: 1,
+                      },
                       data: [
                         {
                           ...question.toObject(),

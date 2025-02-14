@@ -32,7 +32,7 @@ import {
 
 import {
   GetQuestions,
-  GetRandomQuestions,
+  GetRandomQuestion,
   GetProposedQuestions,
   DeleteProposedQuestions,
 } from './questions/index'
@@ -67,13 +67,13 @@ const registerControllers = (app: Application) => {
   CreateQuestion(app)
   DeleteQuestion(app)
   GetQuestion(app)
+  GetRandomQuestion(app)
   GetQuestionCategories(app)
   GetQuestionProposal(app)
 
   // questions
   GetProposedQuestions(app)
   GetQuestions(app)
-  GetRandomQuestions(app)
   DeleteProposedQuestions(app)
 
   // answer
