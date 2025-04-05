@@ -17,16 +17,20 @@ const QUESTION_CATEGORY_MOCKS = [
     name: { en: 'Construction', pl: 'Budownictwo' },
   },
   {
+    _id: '67b33e6f8c37223aed7bc36a',
+    name: { en: 'Culture', pl: 'Kultura' },
+  },
+  {
     _id: '67853c6f182c98ed81585336',
     name: { en: 'Economics', pl: 'Ekonomia' },
   },
   {
-    _id: '67853c6f182c98ed81585337',
-    name: { en: 'Education', pl: 'Edukacja' },
-  },
-  {
     _id: '67853c6f182c98ed81585338',
     name: { en: 'Electronics', pl: 'Elektronika' },
+  },
+  {
+    _id: '67b339908c37223aed7bc368',
+    name: { en: 'Philosophy', pl: 'Filozofia' },
   },
   {
     _id: '67853c6f182c98ed81585339',
@@ -90,11 +94,10 @@ const QUESTION_CATEGORY_MOCKS = [
   { _id: '67853c6f182c98ed81585353', name: { en: 'Theater', pl: 'Teatr' } },
   {
     _id: '67853c6f182c98ed81585354',
-    name: { en: 'Traveling', pl: 'Podróżowanie' },
+    name: { en: 'Urban', pl: 'Urbanistyka' },
   },
   { _id: '67853c6f182c98ed81585355', name: { en: 'TV', pl: 'Telewizja' } },
   { _id: '67853c6f182c98ed81585356', name: { en: 'Universe', pl: 'Kosmos' } },
-  { _id: '67853c6f182c98ed81585357', name: { en: 'Other', pl: 'Inne' } },
 ] as IQuestionCategory[]
 
 export default QUESTION_CATEGORY_MOCKS
