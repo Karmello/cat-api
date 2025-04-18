@@ -7,10 +7,10 @@ export default (req: Request, res: Response, next: NextFunction) => {
   const password = req.body?.password
 
   if (!req.decoded && (!username || !password)) {
-    return res.status(401).send({
+    res.status(401).send({
       msg: msgs.NO_CREDENTIALS_PROVIDED,
     })
+  } else {
+    next()
   }
-
-  next()
 }

@@ -18,30 +18,30 @@ export default (app: Application) => {
       const { type, category, text, options, correctOptions, explanation } = question
 
       if (!checkCorrectOptions(question)) {
-        return sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG })
-      }
-
-      const newQuestion = new QuestionModel({
-        creatorId,
-        type,
-        category,
-        text,
-        options,
-        correctOptions,
-        explanation,
-      })
-
-      newQuestion
-        .save()
-        .then(savedQuestion =>
-          res.status(201).send({
-            question: savedQuestion.toObject(),
-            msg: msgs.QUESTION_CREATED,
-          })
-        )
-        .catch(err => {
-          sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG }, err)
+        sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG })
+      } else {
+        const newQuestion = new QuestionModel({
+          creatorId,
+          type,
+          category,
+          text,
+          options,
+          correctOptions,
+          explanation,
         })
+
+        newQuestion
+          .save()
+          .then(savedQuestion =>
+            res.status(201).send({
+              question: savedQuestion.toObject(),
+              msg: msgs.QUESTION_CREATED,
+            })
+          )
+          .catch(err => {
+            sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG }, err)
+          })
+      }
     }
   )
 }
