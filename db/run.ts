@@ -16,7 +16,12 @@ const scriptName = process.argv[3]
 const copyToEnvName = process.argv[4]
 
 const main = async () => {
-  const client = new MongoClient(process.env['MONGO_URI_' + envName.toUpperCase()])
+  const client = new MongoClient(process.env['MONGO_URI_' + envName.toUpperCase()], {
+    auth: {
+      username: process.env.MONGO_USER,
+      password: process.env.MONGO_PASS
+    }
+  })
 
   try {
     await client.connect()

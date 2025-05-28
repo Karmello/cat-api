@@ -12,8 +12,8 @@ const {
   API_PORT_TEST,
   MONGO_URI,
   MONGO_URI_TEST,
-  MONGO_INITDB_ROOT_USERNAME,
-  MONGO_INITDB_ROOT_PASSWORD,
+  MONGO_USER,
+  MONGO_PASS,
   FE_URL,
   FULL_ACCOUNT_PAYMENT_REQUIRED,
   HONEYBADGER_API_KEY,
@@ -28,8 +28,8 @@ registerControllers(app)
 
 mongoose
   .connect(process.env.NODE_ENV === 'test' ? MONGO_URI_TEST : MONGO_URI, {
-    user: MONGO_INITDB_ROOT_USERNAME,
-    pass: MONGO_INITDB_ROOT_PASSWORD,
+    user: MONGO_USER,
+    pass: MONGO_PASS,
   })
   .then(
     () => {
