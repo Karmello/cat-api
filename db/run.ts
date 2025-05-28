@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb'
 
 import { SCRIPTS } from './constants'
+
 import {
   seedDatabase,
   seedDbWithStaticData,
@@ -16,12 +17,7 @@ const scriptName = process.argv[3]
 const copyToEnvName = process.argv[4]
 
 const main = async () => {
-  const client = new MongoClient(process.env['MONGO_URI_' + envName.toUpperCase()], {
-    auth: {
-      username: process.env.MONGO_USER,
-      password: process.env.MONGO_PASS
-    }
-  })
+  const client = new MongoClient(process.env['MONGO_URI_' + envName.toUpperCase()])
 
   try {
     await client.connect()
