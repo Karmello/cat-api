@@ -25,6 +25,7 @@ import {
 
 import { DATE_FORMAT, IUser, ValidationErrorCode } from 'cat-shared/utils/index'
 import { IUserDoc, ModelName, SALT_ROUNDS } from 'utils/index'
+import dict from 'src/dictionary'
 
 const { model, Schema } = mongoose
 
@@ -92,7 +93,7 @@ const userSchema = new Schema(
   }
 )
 
-userSchema.plugin(uniqueValidator, { message: ValidationErrorCode.AlreadyTaken })
+userSchema.plugin(uniqueValidator, { message: dict.errors.alreadyTaken })
 
 userSchema.methods = {
   toJSON() {

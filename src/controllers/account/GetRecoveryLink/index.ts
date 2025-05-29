@@ -1,12 +1,11 @@
 import { Application, Request, Response } from 'express'
 
-import { ApiUrlPath, X_AUTH_TOKEN, ValidationErrorCode } from 'cat-shared/utils/index'
+import { ApiUrlPath, X_AUTH_TOKEN } from 'cat-shared/utils/index'
 import { IUserDoc } from 'utils/index'
-import { sendMail, getFreshAuthToken, sendBadResponse } from 'helpers/index'
+import { sendMail, getFreshAuthToken } from 'helpers/index'
 import { UserModel } from 'models/index'
 
 import dict from 'src/dictionary'
-import msgs from 'utils/msgs'
 
 const { NODE_ENV, FE_URL } = process.env
 
@@ -19,11 +18,9 @@ export default (app: Application) => {
     UserModel.findOne({ email })
       .then((doc: IUserDoc) => {
         if (!doc) {
-          return sendBadResponse(req, res, 400, {
-            valErr: {
-              email: {
-                message: ValidationErrorCode.NoSuchEmail,
-              },
+          return res.status(400).send({
+            errors: {
+              email: dict.errors.notFound,
             },
           })
         }
@@ -41,9 +38,7 @@ export default (app: Application) => {
 
           if (NODE_ENV === 'test') {
             res.setHeader(X_AUTH_TOKEN, token)
-            return res.status(200).send({
-              msg: msgs.RECOVERY_LINK_SENT,
-            })
+            return res.status(200).send({ info: dict.successes.recoveryLinkSent })
           }
 
           sendMail({
@@ -55,19 +50,19 @@ export default (app: Application) => {
             link,
           }).then(
             () => {
-              if (NODE_ENV === 'development') res.setHeader(X_AUTH_TOKEN, token)
-              res.status(200).send({
-                msg: msgs.RECOVERY_LINK_SENT,
-              })
+              if (NODE_ENV === 'development') {
+                res.setHeader(X_AUTH_TOKEN, token)
+              }
+              return res.status(200).send({ info: dict.successes.recoveryLinkSent })
             },
-            err => {
-              sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG }, err)
+            () => {
+              res.status(400).send({ error: dict.errors.somethingWentWrong })
             }
           )
         }
       })
-      .catch(err => {
-        sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG }, err)
+      .catch(() => {
+        res.status(400).send({ error: dict.errors.somethingWentWrong })
       })
   })
 }

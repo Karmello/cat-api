@@ -4,8 +4,7 @@ import { ApiUrlPath } from 'cat-shared/utils/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { UserModel } from 'models/index'
 import { IUserDoc } from 'utils/index'
-import msgs from 'utils/msgs'
-import { sendBadResponse } from 'helpers/index'
+import dict from 'src/dictionary'
 
 export default (app: Application) => {
   app.put(
@@ -19,23 +18,25 @@ export default (app: Application) => {
         .exec()
         .then((doc: IUserDoc) => {
           if (!doc) {
-            return sendBadResponse(req, res, 404, { msg: msgs.NO_SUCH_USER })
+            return res.status(404).send({ error: dict.errors.noSuchUser })
           }
 
           doc.set({ password: newPassword })
           doc
             .save()
             .then(() => {
-              res.status(200).send({
-                msg: msgs.PASSWORD_UPDATED,
-              })
+              res.status(200).send({ success: dict.successes.passwordUpdated })
             })
             .catch(err => {
-              sendBadResponse(req, res, 400, { valErr: err.errors })
+              const errors = {}
+              Object.keys(err.errors).forEach(fieldName => {
+                errors[fieldName] = err.errors[fieldName].message
+              })
+              res.status(400).send({ errors })
             })
         })
-        .catch(err => {
-          sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG }, err)
+        .catch(() => {
+          res.status(400).send({ error: dict.errors.somethingWentWrong })
         })
     }
   )

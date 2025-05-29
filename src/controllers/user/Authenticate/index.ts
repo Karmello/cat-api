@@ -1,13 +1,13 @@
 import { Application, Request, Response } from 'express'
 
 import { ApiUrlPath, X_AUTH_TOKEN } from 'cat-shared/utils/index'
-import { getFreshAuthToken, sendBadResponse } from 'helpers/index'
+import { getFreshAuthToken } from 'helpers/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { UserModel } from 'models/index'
 import { IUserDoc } from 'utils/index'
-import msgs from 'utils/msgs'
 
 import checkRequest from './checkRequest'
+import dict from 'src/dictionary'
 
 type TQuery = {
   _id?: string
@@ -37,7 +37,7 @@ export default (app: Application) => {
             if (doc) {
               doc.comparePasswords(password, (err, isMatch) => {
                 if (err || !isMatch) {
-                  sendBadResponse(req, res, 401, { msg: msgs.AUTHENTICATION_FAILED }, err)
+                  res.status(401).send({ error: dict.errors.authFailed })
                 } else {
                   res.setHeader(X_AUTH_TOKEN, getFreshAuthToken(doc))
                   const body = { user: doc, isAdmin: undefined }
@@ -48,9 +48,7 @@ export default (app: Application) => {
                 }
               })
             } else {
-              sendBadResponse(req, res, 401, {
-                msg: msgs.AUTHENTICATION_FAILED,
-              })
+              res.status(401).send({ error: dict.errors.authFailed })
             }
           } else {
             if (doc) {
@@ -61,14 +59,12 @@ export default (app: Application) => {
               }
               res.status(200).send(body)
             } else {
-              sendBadResponse(req, res, 401, {
-                msg: msgs.AUTHENTICATION_FAILED,
-              })
+              res.status(401).send({ error: dict.errors.authFailed })
             }
           }
         })
-        .catch(err => {
-          sendBadResponse(req, res, 400, { msg: msgs.AUTHENTICATION_FAILED }, err)
+        .catch(() => {
+          res.status(401).send({ error: dict.errors.authFailed })
         })
     }
   )

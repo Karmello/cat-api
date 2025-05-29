@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "/usr/src/cat-api"
+		},
+		{
+			"path": "src"
+		},
+		{
+			"path": "src/controllers"
+		}
+	],
+	"settings": {}
+}

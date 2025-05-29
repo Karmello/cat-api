@@ -1,6 +1,18 @@
 import { Lang } from 'cat-shared/utils/index'
 
 const dict = {
+  errors: {
+    authFailed: 'Authentication failed',
+    alreadyTaken: 'Is already taken',
+    noSuchUser: 'No such user',
+    somethingWentWrong: 'Something went wrong',
+    notFound: 'Not found',
+  },
+  successes: {
+    passwordUpdated: 'Password updated',
+    recoveryLinkSent:
+      'The password recovery link has been sent to you. Please check your mailbox.',
+  },
   [Lang.EN]: {
     activation: {
       subject: '"Can Answer That ?" - account verification',

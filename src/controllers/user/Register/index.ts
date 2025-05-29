@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express'
 
 import { ApiUrlPath, X_AUTH_TOKEN, AccountStatus } from 'cat-shared/utils/index'
-import { getFreshAuthToken, sendBadResponse } from 'helpers/index'
+import { getFreshAuthToken } from 'helpers/index'
 import { UserModel } from 'models/index'
 
 export default (app: Application) => {
@@ -25,7 +25,11 @@ export default (app: Application) => {
         res.status(201).send({ user: savedUser })
       })
       .catch(err => {
-        sendBadResponse(req, res, 400, { valErr: err.errors })
+        const errors = {}
+        Object.keys(err.errors).forEach(fieldName => {
+          errors[fieldName] = err.errors[fieldName].message
+        })
+        res.status(400).send({ errors })
       })
   })
 }
