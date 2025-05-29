@@ -2,10 +2,10 @@ import { Application, Request, Response } from 'express'
 
 import { ApiUrlPath, X_AUTH_TOKEN } from 'cat-shared/utils/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
-import { getFreshAuthToken, sendBadResponse } from 'helpers/index'
+import { getFreshAuthToken } from 'helpers/index'
 import { UserModel } from 'models/index'
 import { IUserDoc } from 'utils/index'
-import msgs from 'utils/msgs'
+import dict from 'src/dictionary'
 
 export default (app: Application) => {
   app.put(
@@ -20,7 +20,7 @@ export default (app: Application) => {
         .exec()
         .then((doc: IUserDoc) => {
           if (!doc) {
-            return sendBadResponse(req, res, 404, { msg: msgs.NO_SUCH_USER })
+            return res.status(404).send({ error: dict.errors.noSuchUser })
           }
 
           const newValues = {
@@ -43,15 +43,19 @@ export default (app: Application) => {
               res.setHeader(X_AUTH_TOKEN, getFreshAuthToken(updatedDoc))
               res.status(200).send({
                 user: updatedDoc,
-                msg: msgs.USER_DETAILS_UPDATED,
+                success: dict.successes.userDetailsUpdated,
               })
             })
             .catch(err => {
-              sendBadResponse(req, res, 400, { valErr: err.errors })
+              const errors = {}
+              Object.keys(err.errors).forEach(fieldName => {
+                errors[fieldName] = err.errors[fieldName].message
+              })
+              res.status(400).send({ errors })
             })
         })
-        .catch(err => {
-          sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG }, err)
+        .catch(() => {
+          res.status(400).send({ error: dict.errors.somethingWentWrong })
         })
     }
   )

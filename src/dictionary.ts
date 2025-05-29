@@ -12,6 +12,7 @@ const dict = {
     passwordUpdated: 'Password updated',
     recoveryLinkSent:
       'The password recovery link has been sent to you. Please check your mailbox.',
+    userDetailsUpdated: 'User details updated',
   },
   [Lang.EN]: {
     activation: {
