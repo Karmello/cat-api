@@ -7,6 +7,7 @@ const dict = {
     noSuchUser: 'No such user',
     somethingWentWrong: 'Something went wrong',
     notFound: 'Not found',
+    isIncorrect: 'Is incorrect',
   },
   successes: {
     passwordUpdated: 'Password updated',
