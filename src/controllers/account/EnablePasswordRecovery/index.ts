@@ -30,7 +30,7 @@ export default (app: Application) => {
           req.app
             .get('io')
             .sockets.in('email:' + doc.email)
-            .emit(SocketEvent.EnablePasswordRecoveryField, { token })
+            .emit(SocketEvent.EnablePasswordRecoveryField, { [X_AUTH_TOKEN]: token })
           res.status(200).send(body)
         })
         .catch(err => {

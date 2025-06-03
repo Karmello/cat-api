@@ -1,6 +1,6 @@
 import { Application, Request, Response } from 'express'
 
-import { ApiUrlPath, X_AUTH_TOKEN } from 'cat-shared/utils/index'
+import { ApiUrlPath, Lang, X_AUTH_TOKEN } from 'cat-shared/utils/index'
 import { IUserDoc } from 'utils/index'
 import { sendMail, getFreshAuthToken } from 'helpers/index'
 import { UserModel } from 'models/index'
@@ -10,10 +10,10 @@ import dict from 'src/dictionary'
 const { NODE_ENV, FE_URL } = process.env
 
 export default (app: Application) => {
-  app.get(ApiUrlPath.GetRecoveryLink, (req: Request, res: Response) => {
-    const lang = req.get('language')
+  app.post(ApiUrlPath.GetRecoveryLink, (req: Request, res: Response) => {
+    const lang = Lang.EN
 
-    const { email } = req.query
+    const { email } = req.body
 
     UserModel.findOne({ email })
       .then((doc: IUserDoc) => {
@@ -61,7 +61,8 @@ export default (app: Application) => {
           )
         }
       })
-      .catch(() => {
+      .catch(err => {
+        console.log(err)
         res.status(400).send({ error: dict.errors.somethingWentWrong })
       })
   })
