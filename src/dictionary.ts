@@ -8,6 +8,7 @@ const dict = {
     somethingWentWrong: 'Something went wrong',
     notFound: 'Not found',
     isIncorrect: 'Is incorrect',
+    couldNotGetData: 'Could not get data',
   },
   successes: {
     passwordUpdated: 'Password updated',

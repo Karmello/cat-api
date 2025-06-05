@@ -31,6 +31,7 @@ export default (app: Application) => {
             .get('io')
             .sockets.in('email:' + doc.email)
             .emit(SocketEvent.EnablePasswordRecoveryField, { [X_AUTH_TOKEN]: token })
+
           res.status(200).send(body)
         })
         .catch(err => {
