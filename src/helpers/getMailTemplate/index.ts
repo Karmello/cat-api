@@ -1,13 +1,12 @@
 import dict from 'src/dictionary'
 
 type Args = {
-  lang: string
   text: string
   link?: string
   btnText?: string
 }
 
-const getMailTemplate = ({ lang, text, link, btnText }: Args) => {
+const getMailTemplate = ({ text, link, btnText }: Args) => {
   const displayBtn = link && btnText
 
   const tags = []
@@ -51,7 +50,7 @@ const getMailTemplate = ({ lang, text, link, btnText }: Args) => {
         style="border-radius: 250px;"
       />
       <br /><br />
-      <p style="font-size: 18px;"><b>${dict[lang].mailFooterText}</b></p>
+      <p style="font-size: 18px;"><b>${dict.email.footerText}</b></p>
     </div>
   `)
 

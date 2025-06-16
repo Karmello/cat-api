@@ -9,14 +9,23 @@ const dict = {
     notFound: 'Not found',
     isIncorrect: 'Is incorrect',
     couldNotGetData: 'Could not get data',
+    alreadyConfirmed: 'Already confirmed',
   },
   successes: {
     passwordUpdated: 'Password updated',
+    userDetailsUpdated: 'User details updated',
+    avatarUploaded: 'Avatar uploaded',
+  },
+  infos: {
     recoveryLinkSent:
       'The password recovery link has been sent to you. Please check your mailbox.',
-    userDetailsUpdated: 'User details updated',
+    activationLinkSent:
+      'The verification link has been sent to you. Please check your mailbox.',
+    deactivationLinkSent:
+      'The deactivation link has been sent to you. Please check your mailbox.',
   },
-  [Lang.EN]: {
+  email: {
+    footerText: '"Can Answer That ?" app wishes you a great day !',
     activation: {
       subject: '"Can Answer That ?" - account verification',
       text: 'Use this button to verify your email and activate the account for',
@@ -37,10 +46,11 @@ const dict = {
       enterNewPassword:
         'You can now close this window, go back to the app and enter your new password.',
     },
+  },
+  [Lang.EN]: {
     noSuchUser: 'No such user.',
     emailAlreadyConfirmed: 'Email already confirmed.',
     somethingWentWrong: 'Something went wrong.',
-    mailFooterText: '"Can Answer That ?" app wishes you a great day !',
   },
 }
 

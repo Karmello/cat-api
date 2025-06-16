@@ -3,9 +3,8 @@ import { Application, Request, Response } from 'express'
 import { ApiUrlPath, X_AUTH_TOKEN } from 'cat-shared/utils/index'
 import { IUserDoc } from 'utils/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
-import { sendMail, getFreshAuthToken, sendBadResponse } from 'helpers/index'
+import { sendMail, getFreshAuthToken } from 'helpers/index'
 import { UserModel } from 'models/index'
-import msgs from 'utils/msgs'
 import dict from 'src/dictionary'
 
 const { NODE_ENV, FE_URL } = process.env
@@ -33,35 +32,30 @@ export default (app: Application) => {
 
             if (NODE_ENV === 'test') {
               res.setHeader(X_AUTH_TOKEN, token)
-              return res.status(200).send({
-                msg: msgs.DEACTIVATION_LINK_SENT,
-              })
+              return res.status(200).send({ info: dict.infos.deactivationLinkSent })
             }
 
             sendMail({
-              lang,
               to: doc.email,
-              subject: dict[lang].deactivation.subject,
-              text: dict[lang].deactivation.text + ' ' + doc.username.toUpperCase(),
-              btnText: dict[lang].deactivation.btnText,
+              subject: dict.email.deactivation.subject,
+              text: dict.email.deactivation.text + ' ' + doc.username.toUpperCase(),
+              btnText: dict.email.deactivation.btnText,
               link,
             }).then(
               () => {
                 if (NODE_ENV === 'development') res.setHeader(X_AUTH_TOKEN, token)
-                res.status(200).send({
-                  msg: msgs.DEACTIVATION_LINK_SENT,
-                })
+                res.status(200).send({ info: dict.infos.deactivationLinkSent })
               },
-              err => {
-                sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG }, err)
+              () => {
+                res.status(400).send({ error: dict.errors.somethingWentWrong })
               }
             )
           } else {
-            sendBadResponse(req, res, 400, { msg: msgs.NO_SUCH_USER })
+            res.status(400).send({ error: dict.errors.noSuchUser })
           }
         })
-        .catch(err => {
-          sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG }, err)
+        .catch(() => {
+          res.status(400).send({ error: dict.errors.somethingWentWrong })
         })
     }
   )

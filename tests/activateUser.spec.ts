@@ -18,7 +18,7 @@ describe('activateUser', () => {
       .set(X_AUTH_TOKEN, mailToken)
       .end((err, res) => {
         expect(res.status).to.eql(404)
-        expect(res.text).to.eql(dict.EN.noSuchUser)
+        expect(res.text).to.eql(dict.errors.noSuchUser)
         done()
       })
   })
@@ -33,7 +33,7 @@ describe('activateUser', () => {
         .set(X_AUTH_TOKEN, mailToken)
         .end((err, res) => {
           expect(res.status).to.eql(403)
-          expect(res.text).to.eql(dict.EN.emailAlreadyConfirmed)
+          expect(res.text).to.eql(dict.errors.alreadyConfirmed)
           done()
         })
     })
@@ -50,7 +50,7 @@ describe('activateUser', () => {
           .set(X_AUTH_TOKEN, mailToken)
           .end((err, res) => {
             expect(res.status).to.eql(200)
-            expect(res.text).to.contain(dict.EN.activation.emailConfirmed)
+            expect(res.text).to.contain(dict.email.activation.emailConfirmed)
             done()
           })
       })

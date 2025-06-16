@@ -3,7 +3,6 @@ import nodemailer from 'nodemailer'
 import { getMailTemplate } from 'helpers/index'
 
 type TOptions = {
-  lang: string
   to: string
   subject: string
   text: string
@@ -23,13 +22,13 @@ export default (options: TOptions) =>
       },
     })
 
-    const { lang, to, subject, text, btnText, link } = options
+    const { to, subject, text, btnText, link } = options
 
     const mailOptions = {
       from: EMAIL_USER,
       to,
       subject,
-      html: getMailTemplate({ lang, text, link, btnText }),
+      html: getMailTemplate({ text, link, btnText }),
     }
 
     transporter.sendMail(mailOptions, (err, info) => (err ? reject(err) : resolve(info)))

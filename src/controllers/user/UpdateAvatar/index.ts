@@ -2,9 +2,9 @@ import { Application, Request, Response } from 'express'
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 
 import { ApiUrlPath } from 'cat-shared/utils/index'
-import msgs from 'utils/msgs'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
-import { base64ToBuffer, sendBadResponse } from 'helpers/index'
+import { base64ToBuffer } from 'helpers/index'
+import dict from 'src/dictionary'
 
 const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_BUCKET_NAME } = process.env
 
@@ -33,10 +33,10 @@ export default (app: Application) => {
       client
         .send(command)
         .then(() => {
-          res.status(200).send({ msg: msgs.AVATAR_UPDATED })
+          res.status(200).send({ success: dict.successes.avatarUploaded })
         })
-        .catch(err => {
-          sendBadResponse(req, res, 400, { msg: msgs.SOMETHING_WENT_WRONG }, err)
+        .catch(() => {
+          res.status(400).send({ error: dict.errors.somethingWentWrong })
         })
     }
   )

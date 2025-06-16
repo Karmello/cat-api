@@ -3,7 +3,7 @@ import { Application, Request, Response } from 'express'
 import { ApiUrlPath, SocketEvent, X_AUTH_TOKEN } from 'cat-shared/utils/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
 import { UserModel } from 'models/index'
-import { sendBadResponse, getMailTemplate } from 'helpers/index'
+import { getMailTemplate } from 'helpers/index'
 import dict from 'src/dictionary'
 
 export default (app: Application) => {
@@ -12,19 +12,16 @@ export default (app: Application) => {
     readAuthToken,
     checkAuthToken,
     (req: Request, res: Response) => {
-      const lang = req.query.lang?.toString() || 'EN'
-
       UserModel.findOne({ _id: req.decoded._id })
         .then(doc => {
           if (!doc) {
-            return sendBadResponse(req, res, 404, dict[lang].noSuchUser)
+            return res.status(404).send({ error: dict.errors.noSuchUser })
           }
 
           const token = (req.headers[X_AUTH_TOKEN] || req.query[X_AUTH_TOKEN]) as string
 
           const body = getMailTemplate({
-            lang,
-            text: dict[lang].passwordRecovery.enterNewPassword,
+            text: dict.email.passwordRecovery.enterNewPassword,
           })
 
           req.app
@@ -34,8 +31,8 @@ export default (app: Application) => {
 
           res.status(200).send(body)
         })
-        .catch(err => {
-          sendBadResponse(req, res, 400, dict[lang].somethingWentWrong, err)
+        .catch(() => {
+          res.status(400).send({ error: dict.errors.somethingWentWrong })
         })
     }
   )

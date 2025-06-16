@@ -38,22 +38,21 @@ export default (app: Application) => {
 
           if (NODE_ENV === 'test') {
             res.setHeader(X_AUTH_TOKEN, token)
-            return res.status(200).send({ info: dict.successes.recoveryLinkSent })
+            return res.status(200).send({ info: dict.infos.recoveryLinkSent })
           }
 
           sendMail({
-            lang,
             to: doc.email,
-            subject: dict[lang].passwordRecovery.subject,
-            text: dict[lang].passwordRecovery.text + ' ' + doc.username.toUpperCase(),
-            btnText: dict[lang].passwordRecovery.btnText,
+            subject: dict.email.passwordRecovery.subject,
+            text: dict.email.passwordRecovery.text + ' ' + doc.username.toUpperCase(),
+            btnText: dict.email.passwordRecovery.btnText,
             link,
           }).then(
             () => {
               if (NODE_ENV === 'development') {
                 res.setHeader(X_AUTH_TOKEN, token)
               }
-              return res.status(200).send({ info: dict.successes.recoveryLinkSent })
+              return res.status(200).send({ info: dict.infos.recoveryLinkSent })
             },
             () => {
               res.status(400).send({ error: dict.errors.somethingWentWrong })
@@ -61,8 +60,7 @@ export default (app: Application) => {
           )
         }
       })
-      .catch(err => {
-        console.log(err)
+      .catch(() => {
         res.status(400).send({ error: dict.errors.somethingWentWrong })
       })
   })

@@ -4,7 +4,7 @@ import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3'
 
 import { ApiUrlPath, IQuestion, SocketEvent } from 'cat-shared/utils/index'
 import { readAuthToken, checkAuthToken } from 'middleware/index'
-import { getMailTemplate, sendBadResponse } from 'helpers/index'
+import { getMailTemplate } from 'helpers/index'
 import dict from 'src/dictionary'
 
 import {
@@ -33,8 +33,6 @@ export default (app: Application) => {
     readAuthToken,
     checkAuthToken,
     (req: Request, res: Response) => {
-      const lang = req.query.lang?.toString() || 'EN'
-
       const userId = new ObjectId(req.decoded._id)
 
       UserModel.deleteOne({ _id: userId })
@@ -67,22 +65,21 @@ export default (app: Application) => {
                   }
 
                   const body = getMailTemplate({
-                    lang,
-                    text: dict[lang].deactivation.accountDeactivatedMsg,
+                    text: dict.email.deactivation.accountDeactivatedMsg,
                   })
 
                   res.status(200).send(body)
                 })
               })
-              .catch(err => {
-                sendBadResponse(req, res, 400, dict[lang].somethingWentWrong, err)
+              .catch(() => {
+                res.status(400).send({ error: dict.errors.somethingWentWrong })
               })
           } else {
-            sendBadResponse(req, res, 404, dict[lang].noSuchUser)
+            res.status(404).send({ error: dict.errors.noSuchUser })
           }
         })
-        .catch(err => {
-          sendBadResponse(req, res, 400, dict[lang].somethingWentWrong, err)
+        .catch(() => {
+          res.status(400).send({ error: dict.errors.somethingWentWrong })
         })
     }
   )

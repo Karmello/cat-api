@@ -25,7 +25,6 @@ const notifyUsers = async (db: Db) => {
   usersToNotify.forEach(async (u: IUser) => {
     sendMailPromises.push(
       await sendMail({
-        lang: Lang.EN,
         to: u.email,
         subject: 'Friendly reminder from the "Can Answer That ?" web application',
         text: `
